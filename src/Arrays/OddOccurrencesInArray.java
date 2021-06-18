@@ -1,4 +1,4 @@
-package Arrays.CyclicRotation;
+package Arrays;
 import java.util.*;
 
 public class OddOccurrencesInArray {
