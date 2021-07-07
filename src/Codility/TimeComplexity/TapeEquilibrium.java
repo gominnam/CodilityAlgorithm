@@ -1,4 +1,4 @@
-package TimeComplexity;
+package Codility.TimeComplexity;
 
 public class TapeEquilibrium {
     public int solution(int[] A) {

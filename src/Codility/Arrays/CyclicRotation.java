@@ -1,4 +1,4 @@
-package Arrays;
+package Codility.Arrays;
 
 public class CyclicRotation {
     public int[] solution(int[] A, int K) {

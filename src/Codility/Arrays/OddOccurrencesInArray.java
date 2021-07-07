@@ -1,4 +1,4 @@
-package Arrays;
+package Codility.Arrays;
 import java.util.*;
 
 public class OddOccurrencesInArray {

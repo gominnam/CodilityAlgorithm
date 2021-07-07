@@ -1,4 +1,4 @@
-package LeetCode.Subsequence;
+package Codility.Subsequence;
 
 import java.util.ArrayList;
 
