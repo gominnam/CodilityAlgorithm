@@ -1,17 +1,50 @@
 package Programmers.Level2;
 
+import java.util.Scanner;
+import java.util.Stack;
+
 public class NextNumber {
-    class Solution {
-        public int solution(int n) {
-            int answer = 0;
+    public String solution(String number, int k) {
+        String answer = "";
+        char[] n = number.toCharArray();
+        int cnt = 0;
+        Stack<Integer> stack = new Stack<>();
+        stack.push(n[0] - '0');
 
 
-            return answer;
+        for(int i=1; i<number.length(); i++){
+            if(cnt == k) {
+                stack.push(n[i] - '0');
+                continue;
+            }
+
+            while(!stack.isEmpty() && stack.peek() < (n[i] - '0')) {
+                stack.pop();
+                cnt++;
+
+                if(cnt == k) break;
+            }
+
+            stack.push(n[i] - '0');
         }
+        while(stack.size() > number.length()-k){
+            stack.pop();
+        }
+
+        for(Integer s : stack){
+            answer += s;
+        }
+
+        return answer;
     }
 
     public static void main(String[] args){
+        NextNumber T = new NextNumber();
+        Scanner sc = new Scanner(System.in);
+        String number = sc.nextLine();
+        int k = sc.nextInt();
 
+        System.out.println(T.solution(number, k));
     }
 }
 
@@ -27,4 +60,26 @@ public class NextNumber {
 
 제한 사항
 n은 1,000,000 이하의 자연수 입니다.
+
+------------------------------------------------------------------------------------
+다른 분 참고 소스
+import java.util.Stack;
+class Solution {
+    public String solution(String number, int k) {
+        char[] result = new char[number.length() - k];
+        Stack<Character> stack = new Stack<>();
+
+        for (int i=0; i<number.length(); i++) {
+            char c = number.charAt(i);
+            while (!stack.isEmpty() && stack.peek() < c && k-- > 0) {
+                stack.pop();
+            }
+            stack.push(c);
+        }
+        for (int i=0; i<result.length; i++) {
+            result[i] = stack.get(i);
+        }
+        return new String(result);
+    }
+}
  */
