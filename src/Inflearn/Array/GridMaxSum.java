@@ -5,27 +5,35 @@ import java.util.Scanner;
 public class GridMaxSum {
     public int Solve(int n, int[][] arr){
         int max = Integer.MIN_VALUE;
-        int sum1 = 0, sum2 = 0;
-        //각 행의 합 최대값 구하기, 각 열의 합 최대값 구하기
+
+        //각 열의 합 최대값 구하기
         for(int i=0; i<n; i++){
-            sum1=sum2=0;
+            int sum = 0;
             for(int j=0; j<n; j++){
-                sum1 += arr[i][j];
-                sum2 += arr[j][i];
+                sum += arr[i][j];
             }
-            max = Math.max(max, sum1);
-            max = Math.max(max, sum2);
+            max = Math.max(max, sum);
         }
 
-        //대각선의 최대값 구하기
-        sum1=sum2=0;
-        for(int i = 0; i<n; i++){
-            sum1 += arr[i][i];
-            sum2 += arr[n-i-1][n-i-1];
+        //각 행의 합 최대값 구하기
+        for(int i=0; i<n; i++){
+            int sum = 0;
+            for(int j=0; j<n; j++){
+                sum += arr[j][i];
+            }
+            max = Math.max(max, sum);
         }
+        int tmp = 0;
+        for(int i = 0, j = 0; i<n; i++, j++){
+            tmp += arr[i][j];
+        }
+        max = Math.max(max, tmp);
 
-        max = Math.max(max, sum1);
-        max = Math.max(max, sum2);
+        int tmp2 = 0;
+        for(int i = n-1, j = n-1; i>0; i--, j--){
+            tmp2 += arr[i][j];
+        }
+        max = Math.max(max, tmp2);
 
         return max;
     }
