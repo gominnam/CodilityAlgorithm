@@ -32,7 +32,6 @@ public class Rank {
         for(int x : T.Solve(num, score)){
             System.out.print(x + " ");
         }
-
     }
 }
 /*  복잡하게 생각하지 말고 풀 것.

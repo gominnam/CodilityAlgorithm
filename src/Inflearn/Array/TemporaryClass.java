@@ -29,7 +29,7 @@ public class TemporaryClass {
     }
 
     public static void main(String[] args){
-        TemporaryClass T = new TemporaryClass();
+        TemporaryClass  T = new TemporaryClass();
 
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
