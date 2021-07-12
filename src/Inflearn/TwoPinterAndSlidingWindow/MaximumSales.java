@@ -4,31 +4,18 @@ import java.util.Scanner;
 
 public class MaximumSales {
     public int solution(int n, int m, int[] a){
-        int answer = 0, sum = 0;
-        int p1 = 0, p2 = 0;
-
-//        for(; p2<n; p2++){
-//            sum+=a[p2];
-//            if(sum==m) answer++;
-//            while(sum>=m){
-//                sum-=a[p1++];
-//                if(sum==m) answer++;
-//            }
-//        }
-
-        while(p1<n && p2<n){
-            if(sum == m) {
-                answer++;
-                sum -= a[p1++];
-            }
-            else if(sum < m) {
-                sum += a[p2++];
-                if(p2==n && sum == m) answer++;
-            }
-            else sum -= a[p1++];
+        int max = 0;
+        int p1 = 0, p2 = m;
+        for(int i=0; i<m; i++){
+            max += a[i];
+        }
+        int tmp = max;
+        while(p2 < n){
+            tmp = tmp - a[p1++] + a[p2++];
+            max = Math.max(max, tmp);
         }
 
-        return answer;
+        return max;
     }
 
     public static void main(String[] args){
