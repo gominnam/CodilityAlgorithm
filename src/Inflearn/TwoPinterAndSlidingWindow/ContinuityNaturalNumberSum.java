@@ -9,7 +9,7 @@ public class ContinuityNaturalNumberSum {
         for (int p = 0; p < n; p++) {
             sum += p;
             if(sum == n) answer++;
-            while(sum > n){
+            while(sum >= n){
                 sum -= lp++;
                 if(sum == n) answer++;
             }
@@ -17,6 +17,19 @@ public class ContinuityNaturalNumberSum {
 
         return answer;
     }
+
+//    /* 다른 풀이 방법 */
+//    public int solution_2(int n){
+//        int answer = 0, cnt=1;
+//        n--;
+//        while(n>0){
+//            cnt++;
+//            n=n-cnt;
+//            if(n%cnt == 0) answer++;
+//        }
+//
+//        return answer;
+//    }
 
     public static void main(String[] args){
         ContinuityNaturalNumberSum T = new ContinuityNaturalNumberSum();
