@@ -6,11 +6,6 @@ public class NewIdRecommend {
     /*public String solution(String new_id) {
         String answer = "";
         new_id = new_id.toLowerCase();
-        for(int i=0; i<new_id.length(); i++){
-            if(new_id.charAt(i) == '!' || new_id.charAt(i) == '@' || new_id.charAt(i) == '#'){
-                new_id.replace('!', '');
-            }
-        }
 
         return answer;
     }
