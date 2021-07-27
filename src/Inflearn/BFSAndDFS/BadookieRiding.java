@@ -1,41 +1,37 @@
 package Inflearn.BFSAndDFS;
 
-import java.util.*;
+import java.util.Scanner;
 
-public class SubsetsWithTheSameSum {
-    static String answer = "NO";
-    static int total, n = 0;
-    boolean flag = false;
-    public void DFS(int L, int sum, int[] arr){//L:arr Index, sum:총합, arr배열
-        if(flag) return;
-        if(sum>total/2) return;
-        if(L == n){
-            if((total-sum)==sum) {
-                answer = "YES";
-                flag = true;
-            }
+public class BadookieRiding {
+    static int n, max, answer = Integer.MIN_VALUE;
+
+    public void DFS(int L, int sum, int[] arr){
+        if(sum > max) return;
+        if(L==n){
+            answer = Math.max(answer, sum);
+            return;
         }
-        else{
-            DFS(L+1, sum+arr[L], arr);
-            DFS(L+1, sum, arr);
-        }
+
+        DFS(L+1, sum+arr[L], arr);
+        DFS(L+1, sum, arr);
     }
 
+
     public static void main(String[] args){
-        SubsetsWithTheSameSum T = new SubsetsWithTheSameSum();
+        BadookieRiding T = new BadookieRiding();
         Scanner sc = new Scanner(System.in);
+        max = sc.nextInt();
         n = sc.nextInt();
         int[] arr = new int[n];
         for(int i=0; i<n; i++){
             arr[i] = sc.nextInt();
-            total += arr[i];
         }
-        //total = Arrays.stream(arr).sum(); //stream 사용하는 방법
+
         T.DFS(0, 0, arr);
         System.out.println(answer);
     }
-
 }
+
 /*
 설명
 
@@ -56,9 +52,12 @@ N마리의 바둑이와 각 바둑이의 무게 W가 주어지면, 철수가 트
 첫 번째 줄에 가장 무거운 무게를 출력한다.
 
 TEST CASE:
-6
-1 3 5 6 7 10
+259 5
+81
+58
+42
+33
+61
 
-==> YES
-
+==> 242
  */
