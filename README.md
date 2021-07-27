@@ -20,6 +20,8 @@
     + Queue  
     + TwoPointer
     + SlidingWindow
+    + DFS
+    + BFS
   
 
 -----------------------------------------------------
