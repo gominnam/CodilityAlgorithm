@@ -5,7 +5,7 @@ import java.util.*;
 public class NumberOfCombinations {
     int[][] dy = new int[35][35]; // 메모제이션!!
 
-    public int solution(int n, int r){
+    public int solution(int n, int r){ // combination
         if(dy[n][r] > 0) return dy[n][r];
         if(n==r || r==0) return 1;
         else return dy[n][r] = (solution(n-1, r-1) + solution(n-1, r));
