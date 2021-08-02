@@ -12,7 +12,7 @@ public class FindCombination {
             System.out.println();
         }
         else{
-            for(int i=s; i<=n; i++){
+            for(int i=s; i<=n; i++){ //오름차순만
                 combi[L] = i;
                 DFS(L+1, i+1);
             }
