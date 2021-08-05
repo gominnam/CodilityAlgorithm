@@ -55,12 +55,15 @@ public class Tomato {
                 else if(tmp == 1) Q.offer(new Node(i, j));
             }
         }
-        int a = 0;
+
         if(leftTomatos == 0) System.out.println(0);
         else System.out.println(T.solution(0));
     }
 }
 /*
+feedback - 1. x, y 값 // TestCase 같은 값이 입력값으로 오면 map[4][6]으로 만들어야 맞다
+
+
 토마토(BFS 활용)
 
 설명
