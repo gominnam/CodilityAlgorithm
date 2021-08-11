@@ -1,44 +1,28 @@
 package Inflearn.BFSAndDFS;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 
-public class IslandCountry {
+public class IslandCountryDFS {
     static int n, answer = 0;
     static int[][] map = new int[21][21];
     static int[] mx = {0, 0, 1, -1, -1, 1, -1, 1};
     static int[] my = {-1, 1, 0, 0, -1, -1, 1, 1};
-    static Queue<Point> Q = new LinkedList<>();
 
-    public class Point{
-        int x, y;
-
-        public Point(int x, int y){
-            this.x = x;
-            this.y = y;
-        }
-    }
-
-    public void solution(int x, int y){//BFS
-        Q.offer(new Point(x, y));
-        map[x][y] = 0;
-        while(!Q.isEmpty()){
-            int len = Q.size();
-            for(int i=0; i<len; i++){
-                Point p = Q.poll();
-                for(int j=0; j<8; j++){
-                    int nx = p.x + mx[j];
-                    int ny = p.y + my[j];
-                    if(nx >= 0 && nx < n && ny >= 0 && ny < n && map[nx][ny] == 1){
-                        Q.offer(new Point(nx, ny));
-                        map[nx][ny] = 0;
-                    }
-                }
+    public void solution(int x, int y){//DFS
+        for(int i=0; i<8; i++){
+            int nx = x+mx[i];
+            int ny = y+my[i];
+            if(nx >= 0 && nx < n && ny >= 0 && ny < n && map[nx][ny] == 1){
+                map[nx][ny] = 0;
+                solution(nx, ny);
             }
         }
     }
 
     public static void main(String[] args){
-        IslandCountry T = new IslandCountry();
+        IslandCountryDFS T = new IslandCountryDFS();
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         for(int i=0; i<n; i++){
@@ -50,6 +34,7 @@ public class IslandCountry {
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
                 if(map[i][j] == 1) {
+                    map[i][j] = 0;
                     T.solution(i, j);
                     answer++;
                 }
@@ -60,9 +45,6 @@ public class IslandCountry {
     }
 }
 /*
-feedback - 대각선도 포함이므로 8방향 check // DFS, BFS 둘다 가능하므로 둘다 해볼 것
-         - solution에서 int len = Q.size(); 부분 생략해도 된다. Level check 할때 할 것
-
 설명
 
 N*N의 섬나라 아일랜드의 지도가 격자판의 정보로 주어집니다.
