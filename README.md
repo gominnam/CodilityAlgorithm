@@ -23,7 +23,8 @@
     + DFS
     + BFS
     + Permutation
-    + 
+    + Combination
+    + Greedy
   
 
 -----------------------------------------------------
