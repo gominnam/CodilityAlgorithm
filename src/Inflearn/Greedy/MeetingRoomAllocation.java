@@ -3,7 +3,7 @@ package Inflearn.Greedy;
 import java.util.*;
 
 public class MeetingRoomAllocation {
-    static int answer = 0;
+    static int end = 0, answer = 0;
 
     public static class Room implements Comparable<Room>{
         int s;//start
@@ -20,7 +20,12 @@ public class MeetingRoomAllocation {
     }
 
     public void solution(ArrayList<Room> arr){
-
+        for(Room r : arr){
+            if(r.s >= end){
+                end = r.e;
+                answer++;
+            }
+        }
     }
 
     public static void main(String[] args){
