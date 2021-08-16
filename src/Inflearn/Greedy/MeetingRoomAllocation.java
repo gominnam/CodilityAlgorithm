@@ -13,7 +13,7 @@ public class MeetingRoomAllocation {
             this.e = e;
         }
         @Override
-        public int compareTo(Room r){
+        public int compareTo(Room r){//오름차순
             if(this.e == r.e) return this.s - r.s;
             else return this.e - r.e;
         }
