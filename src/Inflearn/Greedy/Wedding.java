@@ -4,32 +4,30 @@ import java.util.*;
 
 public class Wedding {
     public static class Time implements Comparable<Time>{
-        int i, o;//i : in, o : out
-        public Time(int i, int o){
+        int i;
+        char o;//i : in, o : out
+        public Time(int i, char o){
             this.i = i;
             this.o = o;
         }
         @Override
         public int compareTo(Time t){
-            if(this.i == t.i) return this.o - t.o;
+            if(this.i == t.i) return this.o- t.o;
             return this.i - t.i;
         }
     }
 
     public int solution(ArrayList<Time> arr){
-        int max = Integer.MIN_VALUE;
+        int answer = Integer.MIN_VALUE;
         Collections.sort(arr);
-        Queue<Time> Q = new LinkedList<>();
+        int cnt = 0;
         for(Time t : arr){
-            Q.offer(t);
-            for(int i=0; i<Q.size(); i++){
-                if(Q.peek().o <= t.i) Q.poll();
-                else break;
-            }
-            max = Math.max(max, Q.size());
+            if(t.o == 'S') cnt++;
+            else cnt--;
+            answer = Math.max(answer, cnt);
         }
 
-        return max;
+        return answer;
     }
 
     public static void main(String[] args){
@@ -38,15 +36,19 @@ public class Wedding {
         int n = sc.nextInt();
         ArrayList<Time> arr = new ArrayList<>();
         for(int i=0; i<n; i++){
-            int in = sc.nextInt();
-            int out = sc.nextInt();
-            arr.add(new Time(in, out));
+            int t1 = sc.nextInt();
+            int t2 = sc.nextInt();
+            arr.add(new Time(t1, 'S'));
+            arr.add(new Time(t2, 'E'));
         }
         System.out.println(T.solution(arr));
     }
 }
 
 /*
+feedback - 들어오는 것과 나가는 정보를 따로 정리해도 된다 구하고자 하는 것은 정해진 시간에 총 몇명이 있는지가 궁금한 것이기 때문
+
+
 설명
 
 현수는 다음 달에 결혼을 합니다.
