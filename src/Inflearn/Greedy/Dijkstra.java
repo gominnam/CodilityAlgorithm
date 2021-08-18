@@ -1,0 +1,73 @@
+package Inflearn.Greedy;
+
+import java.util.*;
+
+public class Dijkstra {
+    static int n, m;
+    static ArrayList<ArrayList<Edge>> graph;
+    static int[] dis;//간선 거리
+
+    public static class Edge implements Comparable<Edge>{
+        public int vex;//정점(vertex)
+        public int cost;//비용
+        Edge(int vex, int cost){
+            this.vex = vex;
+            this.cost = cost;
+        }
+        @Override
+        public int compareTo(Edge e){
+            return this.cost - e.cost;//오름차순(작은 값부터)
+        }
+    }
+
+    public void solution(int v){
+        PriorityQueue<Edge> pq = new PriorityQueue<>();
+        pq.offer(new Edge(v, 0));
+        dis[v] = 0;
+        while(!pq.isEmpty()){
+
+        }
+    }
+
+    public static void main(String[] args){
+        Dijkstra T = new Dijkstra();
+        Scanner sc = new Scanner(System.in);
+        n=sc.nextInt();
+        m=sc.nextInt();
+        graph = new ArrayList<>();
+        for(int i=0; i<=n; i++){
+            graph.add(new ArrayList<Edge>());
+        }
+        dis=new int[n+1];
+        Arrays.fill(dis, Integer.MAX_VALUE);//dis 값을 MAX로 초기화
+        for(int i=0; i<m; i++){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int c = sc.nextInt();
+            graph.get(a).add(new Edge(b, c));
+        }
+        T.solution(1);
+
+    }
+}
+
+/*
+N * O(logN)
+feedback - 배열(distance)을 만든다(초기에 최대 값으로 설정). 그리고 최소값으로 계속 갱신한다.
+         - PriorityQueue를 사용한다.(logN으로 시간복잡도 줄일 수 있다.)
+
+다익스트라 음수가 나오면 안된다.
+
+설명
+가중치 방향그래프에서 1번 정점에서 모든 정점으로의 최소 거리비용을 출력하는 프로그램을 작성하시오.(경로가 없으면 IMPOSSIBLE을 출력한다.)
+
+입력설명
+첫째 줄에는 정점의 수 N(1<=N<=20)와 간선의 수 M가 주어진다. 그 다음부터 M줄에 걸쳐 연결정보와 거리비용이 주어진다.
+
+출력설명
+1번 정점에서 각 정점으로 가는 최소비용을 2번 정점부터 차례대로 출력하세요.
+
+TEST CASE:
+
+
+ */

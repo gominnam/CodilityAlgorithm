@@ -13,22 +13,23 @@ public class MaximumIncome {
         }
         @Override
         public int compareTo(Schedule s){
-            if(this.pay == s.pay) return this.day - s.day;
-            return s.pay - this.pay;
+            return s.day - this.day;//내림차순 정렬
         }
     }
 
-    public int solution(ArrayList<Schedule> arr, int day){
+    public int solution(ArrayList<Schedule> arr, int day, int n){
+        int answer = 0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         Collections.sort(arr);
-        int income = 0, curD = 0;
-        for(Schedule s : arr){
-            if(day == curD) return income;
-            if(s.day > curD){
-                income += s.pay;
-                curD++;
+        int j=0;
+        for(int i=day; i>=1; i--){
+            for( ; j<n; j++){
+                if(arr.get(j).day < i) break;
+                pq.offer(arr.get(j).pay);
             }
+            if(!pq.isEmpty()) answer += pq.poll();
         }
-        return income;
+        return answer;
     }
 
     public static void main(String[] args){
@@ -44,11 +45,13 @@ public class MaximumIncome {
             maxD = Math.max(maxD, b);
         }
 
-        System.out.println(T.solution(arr, maxD));
+        System.out.println(T.solution(arr, maxD, n));
     }
 }
 
 /*
+feedback - PriorityQueue를 사용해서 풀어야 함.
+
 설명
 
 현수는 유명한 강연자이다. N개이 기업에서 강연 요청을 해왔다. 각 기업은 D일 안에 와서 강연을 해 주면 M만큼의 강연료를 주기로 했다.
