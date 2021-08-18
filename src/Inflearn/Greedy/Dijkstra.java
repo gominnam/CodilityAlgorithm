@@ -25,7 +25,16 @@ public class Dijkstra {
         pq.offer(new Edge(v, 0));
         dis[v] = 0;
         while(!pq.isEmpty()){
-
+            Edge tmp = pq.poll();
+            int now = tmp.vex;
+            int nowCost = tmp.cost;
+            if(nowCost>dis[now]) continue;
+            for(Edge e : graph.get(now)){
+                if(dis[e.vex] > nowCost + e.cost){//경로를 거쳐가는 경우 cost가 더 저렴할 경우
+                    dis[e.vex] = nowCost + e.cost;//update
+                    pq.offer(new Edge(e.vex, nowCost + e.cost));
+                }
+            }
         }
     }
 
@@ -47,7 +56,10 @@ public class Dijkstra {
             graph.get(a).add(new Edge(b, c));
         }
         T.solution(1);
-
+        for(int i=2; i<=n; i++){
+            if(dis[i] != Integer.MAX_VALUE) System.out.println(i+" : "+dis[i]);
+            else System.out.println(i+" : IMPOSSIBLE");
+        }
     }
 }
 
@@ -68,6 +80,22 @@ feedback - 배열(distance)을 만든다(초기에 최대 값으로 설정). 그
 1번 정점에서 각 정점으로 가는 최소비용을 2번 정점부터 차례대로 출력하세요.
 
 TEST CASE:
+6 9
+1 2 12
+1 3 4
+2 1 2
+2 3 5
+2 5 5
+3 4 5
+4 2 2
+4 5 5
+6 4 5
 
+==>
+2 : 11
+3 : 4
+4 : 9
+5 : 14
+6 : IMPOSSIBLE
 
  */
