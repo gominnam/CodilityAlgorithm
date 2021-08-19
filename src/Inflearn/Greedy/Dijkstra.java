@@ -65,10 +65,12 @@ public class Dijkstra {
 
 /*
 N * O(logN)
-feedback - 배열(distance)을 만든다(초기에 최대 값으로 설정). 그리고 최소값으로 계속 갱신한다.
-         - PriorityQueue를 사용한다.(logN으로 시간복잡도 줄일 수 있다.)
-
-다익스트라 음수가 나오면 안된다.
+feedback
+    1. Edge class를 만든다.(Comparable 오버라이드!!)
+    2. distance 배열 최대값을 갖은 채 초기화
+    3. 2차원 ArrayList를 만든다.(간선에서 간선 이동 정보)
+    4. PriorityQueue를 사용하여 값을 update.(logN으로 시간복잡도 줄일 수 있다.)
+    !!주의!! 다익스트라 음수가 나오면 안된다.
 
 설명
 가중치 방향그래프에서 1번 정점에서 모든 정점으로의 최소 거리비용을 출력하는 프로그램을 작성하시오.(경로가 없으면 IMPOSSIBLE을 출력한다.)
