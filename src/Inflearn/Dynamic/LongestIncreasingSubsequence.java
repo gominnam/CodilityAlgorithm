@@ -3,35 +3,39 @@ package Inflearn.Dynamic;
 import java.util.Scanner;
 
 public class LongestIncreasingSubsequence {
-    static int n;
-    static int[] sub;
-    int answer = 0;
+    static int[] dy;
 
-    public void solution(int cur,  int i, int sum){
-        //고르고 안고르고 다음수가 더 커야 아니면 안고르고
-        if(n==i) {
-            answer = Math.max(sum, answer);
-            return;
+    public int solution(int[] arr){
+        int answer = 0;
+        dy = new int[arr.length];
+        dy[0] = 1;
+        for(int i=1; i<arr.length; i++){
+            int max = 0;
+            for(int j=i-1; j>=0; j--){
+                if(arr[j] < arr[i] && dy[j] > max) max = dy[j];
+            }
+            dy[i] = max+1;
+            answer = Math.max(answer, dy[i]);
         }
-        solution(cur, i+1, sum);
-        if(sub[cur] < sub[i+1]) solution(i+1, i+1, sum+1);
+        return answer;
     }
+
 
     public static void main(String[] args){
         LongestIncreasingSubsequence T = new LongestIncreasingSubsequence();
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        sub = new int[n];
+        int n = sc.nextInt();
+        int[] arr = new int[n];
         for(int i=0; i<n; i++){
-            sub[i] = sc.nextInt();
+            arr[i] = sc.nextInt();
         }
-        T.solution(0, 0, 1);//고르고
-        T.solution(0, 0, 0);//안고르고
 
-        System.out.println(T.answer);
+        System.out.println(T.solution(arr));
     }
 }
 /*
+feedback - LIS(LongestIncreasingSubsequence)
+
 설명
 
 N개의 자연수로 이루어진 수열이 주어졌을 때, 그 중에서 가장 길게 증가하는(작은 수에서 큰 수로) 원소들의 집합을 찾는 프로그램을 작성하라.
