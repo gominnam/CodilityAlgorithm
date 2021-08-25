@@ -5,7 +5,7 @@ import java.util.*;
 public class TallestTower {
     static int[] dy;
 
-    public static class Brick{
+    public static class Brick implements Comparable<Brick>{
         public int e;//넓이: extent
         public int h;//높이: height
         public int w;//무게: weight
@@ -15,10 +15,15 @@ public class TallestTower {
             this.h = h;
             this.w = w;
         }
+        public int compareTo(Brick b){
+            if(b.e == this.e) return b.w = this.w;
+            return b.e - this.e;
+        }
     }
 
     public int solution(ArrayList<Brick> arr){
         int answer = 0;
+        Collections.sort(arr);
         dy[0] = arr.get(0).h;
         for(int i=1; i<arr.size(); i++){
             Brick b = arr.get(i);
@@ -84,6 +89,7 @@ public class TallestTower {
 첫 번째 줄에 가장 높이 쌓을 수 있는 탑의 높이를 출력한다.
 
 TEST CASE: // 넓이, 높이, 무게
+
 5
 25 3 4
 4 4 6
@@ -92,4 +98,19 @@ TEST CASE: // 넓이, 높이, 무게
 1 5 2
 
 ==> 10
+
+
+10
+114 96 290
+65 74 201
+261 19 105
+181 60 275
+90 145 254
+286 118 64
+16 24 205
+288 128 299
+96 36 74
+182 5 35
+
+==> 443
  */
