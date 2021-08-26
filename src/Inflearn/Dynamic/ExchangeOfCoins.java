@@ -29,7 +29,9 @@ public class ExchangeOfCoins {
     }
 }
 /*
-feedback - Knapsack Algorithm
+feedback - Knapsack Algorithm[배낭 알고리즘]
+         - 큰 수부터 차례로 나누는 간단한 로직으로는 1원이 없을 때 전부 못거슬러주는 문제가 생길 수 있다. 그러므로 dp를 사용해야 할 듯
+         -
 
 설명
 
