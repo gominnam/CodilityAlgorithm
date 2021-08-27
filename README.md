@@ -27,6 +27,7 @@
     + Greedy
       + Dijkstra
       + UnionFind
+    + Dynamic Programming
   
 
 -----------------------------------------------------
