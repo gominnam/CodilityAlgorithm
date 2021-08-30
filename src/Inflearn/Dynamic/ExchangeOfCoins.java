@@ -3,35 +3,37 @@ package Inflearn.Dynamic;
 import java.util.*;
 
 public class ExchangeOfCoins {
+    static int[] dy;
+    static int n, m;
 
-    public int solution(int n, Integer[] arr, int m){
-        int answer = 0;
-        Arrays.sort(arr, Collections.reverseOrder());
-        for(Integer i : arr){
-            if(m==0) break;
-            answer += m/i;
-            m = m%i;
+    public int solution(int[] coin){
+        Arrays.fill(dy, Integer.MAX_VALUE);
+        dy[0] = 0;
+        for(int i=0; i<n; i++){
+            for(int j=coin[i]; j<=m; j++){
+                dy[j] = Math.min(dy[j], dy[j-coin[i]]+1);
+            }
         }
-        return answer;
+        return dy[m];
     }
 
     public static void main(String[] args){
         ExchangeOfCoins T = new ExchangeOfCoins();
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        Integer[] arr = new Integer[n];
+        n = sc.nextInt();
+        int[] arr = new int[n];
         for(int i=0; i<n; i++){
             arr[i] = sc.nextInt();
         }
-        int money = sc.nextInt();
-
-        System.out.println(T.solution(n, arr, money));
+        m = sc.nextInt();
+        dy = new int[m+1];
+        System.out.println(T.solution(arr));
     }
 }
 /*
 feedback - Knapsack Algorithm[배낭 알고리즘]
-         - 큰 수부터 차례로 나누는 간단한 로직으로는 1원이 없을 때 전부 못거슬러주는 문제가 생길 수 있다. 그러므로 dp를 사용해야 할 듯
-         -
+         - 큰 수부터 차례로 나누는 간단한 로직으로는 1원이 없을 때 전부 못거슬러주는 문제가 생길 수 있다. 그러므로 dp를 사용해야 한다.
+         - 1이 없으면..? 에러가 뜬다. 어떻게 해야할까(나머지를 못나눠주니 상관 없으려나 고민)
 
 설명
 
