@@ -42,6 +42,12 @@ public class Wedding {
             arr.add(new Time(t2, 'E'));
         }
         System.out.println(T.solution(arr));
+
+        String[] s = new String[10];
+        int a = s.length;
+
+        String test = "asd";
+        int b = test.length();
     }
 }
 
