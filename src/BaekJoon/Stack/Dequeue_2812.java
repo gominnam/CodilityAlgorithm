@@ -8,7 +8,6 @@ import java.util.*;
 public class Dequeue_2812 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         StringTokenizer token = new StringTokenizer(br.readLine(), " ");
 
         int N = Integer.parseInt(token.nextToken());
@@ -32,7 +31,6 @@ public class Dequeue_2812 {
             answer.append(largest.removeFirst());
         }
         System.out.println(answer);
-
     }
 
 }
