@@ -49,7 +49,7 @@ public class D_1062 {
                 }
                 if(chk) count++;
             }
-            max = Math.max(max, count);
+            max = Math.max(max, count); 
         }
 
         for(int i=s; i<26; i++){
@@ -62,7 +62,7 @@ public class D_1062 {
     }
 }
 /*
-    ## 백트레킹
+    ## backtracking
 
  - 알파벳을 기준으로 DFS 알고리즘 사용하여 counting 값을 기준으로 MAX 값 보여주기
 
