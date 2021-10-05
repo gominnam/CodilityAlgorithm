@@ -31,10 +31,8 @@ public class DP_15486 {
         br.close();
     }
 }
-
 /*
         ## DynamicProgramming (DFS + Memorization)
-
 
     feedback!!
     - 재귀호출 방식으로 제출 시 시간초과. 메모제이션을 활용하자
@@ -53,5 +51,4 @@ public class DP_15486 {
 
     - 마지막 날(N일)에 만약  T=1 이라면 일을 할 수 있기 때문에 DP배열을 1~N+1까지 받아야 한다는 점이다.
 
-
- */
+*/
