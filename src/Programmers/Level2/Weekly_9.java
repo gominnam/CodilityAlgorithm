@@ -4,8 +4,11 @@ public class Weekly_9 {
     static int[] parent;
 
     public static void main(String[] args){
-        int n = 9;
-        int[][] wires = {{1,3},{2,3},{3,4},{4,5},{4,6},{4,7},{7,8},{7,9}};
+        /*int n = 9;
+        int[][] wires = {{1,3},{2,3},{3,4},{4,5},{4,6},{4,7},{7,8},{7,9}};*/
+
+        int n = 2;
+        int[][] wires = {{1,2}};
 
         int a = solution(n, wires);
 
