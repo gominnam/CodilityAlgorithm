@@ -1,4 +1,4 @@
-package JongManBook.Chapter06;
+package JongManBook.Chapter06_DFS;
 
 import java.io.*;
 import java.util.*;
