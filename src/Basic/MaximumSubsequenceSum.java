@@ -11,7 +11,7 @@ public class MaximumSubsequenceSum {
     public static int fastestMaxSum(int[] arr){
         int N = arr.length, ret = MIN, psum = 0;
         for(int i=0; i<N; ++i){
-            psum = Math.max(psum, 0) + arr[i];
+            psum = Math.max(psum, 0) + arr[i];//이쪽 소스가 핵심
             ret = Math.max(psum, ret);
         }
         return ret;
