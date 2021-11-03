@@ -1,4 +1,4 @@
-package JongManBook.DivideConquer;
+package JongManBook.Chapter8_DynamicProgramming;
 
 import java.io.*;
 import java.util.*;
@@ -34,7 +34,7 @@ public class TrianglePath {
         //메모제이션
         int ret = cache[y][x];
         if(ret != 0) return ret;
-        return Math.max(solve2(y+1, x, N), solve2(y+1, x+1, N)) + tri[y][x];
+        return cache[y][x] = Math.max(solve2(y+1, x, N), solve2(y+1, x+1, N)) + tri[y][x];
     }
 
     /* 시간초과 */

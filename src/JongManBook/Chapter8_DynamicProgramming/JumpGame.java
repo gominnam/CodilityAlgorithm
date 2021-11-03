@@ -1,4 +1,4 @@
-package JongManBook.DivideConquer;
+package JongManBook.Chapter8_DynamicProgramming;
 
 import java.io.*;
 import java.util.StringTokenizer;
