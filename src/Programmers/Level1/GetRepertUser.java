@@ -2,7 +2,7 @@ package Programmers.Level1;
 
 import java.util.*;
 
-public class getRepertUser {
+public class GetRepertUser {
     public static int[] solution(String[] id_list, String[] report, int k){
         int[] answer = new int[id_list.length];
         Map<String, List<String>> map = new HashMap<>();
