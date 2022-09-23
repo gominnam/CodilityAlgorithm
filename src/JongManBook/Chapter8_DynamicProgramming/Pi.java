@@ -9,16 +9,16 @@ public class Pi {
         int C = Integer.parseInt(br.readLine());
         for(int i=0; i<C; i++){
             int p = Integer.parseInt(br.readLine());
-            bw.write(solve(p) + "\n");
+            //bw.write(solve(p) + "\n");
         }
         bw.flush();
         bw.close();
         br.close();
     }
 
-    public static int solve(int p){
+    //public static int solve(int p){
 
-    }
+    //}
 }
 /*
 TESTCASE:
