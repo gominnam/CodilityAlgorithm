@@ -2,7 +2,7 @@ package Inflearn.String;
 
 import java.util.*;
 
-public class ShortestWordDistance {
+public class ShortestWordDistance {//todo: repeat
     public void solution(String str, char c){
         int[] arr = new int[str.length()];
         int p = 10000000;

@@ -2,7 +2,7 @@ package Inflearn.String;
 
 import java.util.*;
 
-public class SpecificWordReverse {
+public class SpecificWordReverse {//todo: repeat
     public String solution(String str){
         String answer;
         char[] c = str.toCharArray();
@@ -51,4 +51,5 @@ a#b!GE*T@S
 
 ==> S#T!EG*b@a
 
+힌트 : Two-Pointer
  */

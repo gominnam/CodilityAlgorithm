@@ -2,7 +2,7 @@ package Inflearn.String;
 
 import java.util.*;
 
-public class StringCompression {
+public class StringCompression { //todo: repeat
     public void solution(String str){
         String answer = "";
         str += " ";
@@ -11,7 +11,6 @@ public class StringCompression {
             if(str.charAt(i) == str.charAt(i+1)) cnt++;
             else{
                 answer += str.charAt(i);
-                //if(cnt > 1) answer += String.valueOf(cnt);
                 if(cnt > 1) answer += cnt;
                 cnt = 1;
             }

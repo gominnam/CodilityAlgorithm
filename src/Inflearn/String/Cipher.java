@@ -3,7 +3,7 @@ package Inflearn.String;
 import java.util.*;
 
 public class Cipher {
-    public void solution(String str, int n){
+    public void solution(String str, int n){//todo: repeat
         String answer = "";
         for(int i=0; i<n; i++){
             String tmp = str.substring(0, 7).replace('#', '1').replace('*', '0');
