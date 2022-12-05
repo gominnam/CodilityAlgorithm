@@ -2,7 +2,7 @@ package Inflearn.TwoPinterAndSlidingWindow;
 
 import java.util.Scanner;
 
-public class MaxLengthContinuityPartialPermutation {
+public class MaxLengthContinuityPartialPermutation {//todo: repeat
     public int solution(int n, int m, int[] a){
         int answer = 0;
         int cnt = 0, p = 0;
@@ -61,6 +61,17 @@ public class MaxLengthContinuityPartialPermutation {
 여러분이 만들 수 있는 1이 연속된 연속부분수열은
 
 위의 1을 2개 넣은 모습이며 그 길이는 8입니다.
+
+
+입력
+첫 번째 줄에 수열의 길이인 자연수 N(5<=N<100,000)이 주어집니다.
+
+두 번째 줄에 N길이의 0과 1로 구성된 수열이 주어집니다.
+
+
+출력
+첫 줄에 최대 길이를 출력하세요.
+
 
 TEST CASE:
 14 2
