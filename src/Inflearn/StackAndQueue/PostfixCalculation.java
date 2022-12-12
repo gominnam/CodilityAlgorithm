@@ -3,7 +3,7 @@ package Inflearn.StackAndQueue;
 import java.util.*;
 
 public class PostfixCalculation {
-    public int Solve(String str){
+    public int Solve(String str){//todo: repeat
         Stack<Integer> stack = new Stack<>();
 
         for(char x : str.toCharArray()){
