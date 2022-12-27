@@ -5,22 +5,21 @@ import java.util.Stack;
 
 public class IronStick {
     public int Solve(String s){
-        int answer = 0;
-        boolean sign = false;
         Stack<Character> stack = new Stack<>();
-        for(char x : s.toCharArray()){ // sign 안쓰려면 for문으로 idex 사용해서 앞에 괄호 값을 구해도 된다.
-            if(x == '('){ // ironStick init
-                stack.push(x);
-                sign = true;
-            }
-            else if(x == ')' && sign){ // razor
+        int answer = 0;
+        char[] brackets = s.toCharArray();
+        stack.push(brackets[0]);
+        for(int i=1; i<brackets.length; i++){
+            if(brackets[i] == ')' && brackets[i-1] == '('){
                 stack.pop();
                 answer += stack.size();
-                sign = false;
             }
-            else if(x == ')'){ // ironStick End
-                answer++;
+            else if(brackets[i] == ')'){
                 stack.pop();
+                answer++;
+            }
+            else{
+                stack.push(brackets[i]);
             }
         }
 

@@ -4,17 +4,17 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class SaveThsPrincess {
-    public int Solve(int n, int m){
+public class SaveThsPrincess {//todo: repeat
+    public int Solve(int personnel, int count){
         int answer = 0;
         Queue<Integer> queue = new LinkedList<>();
-        for(int i=1; i<=n; i++) queue.offer(i);
+        for(int i=1; i<=personnel; i++) queue.add(i);
         while(!queue.isEmpty()){
-            for(int i=1; i<m; i++){
-                queue.offer(queue.poll()); // !중요한 포인트(빼고 뒤에 다시 넣기)
+            for(int i=1; i<count; i++){
+                queue.add(queue.poll());
             }
             queue.poll();
-            if(queue.size() == 1) answer = queue.poll();
+            if(queue.size()==1) answer = queue.poll();
         }
 
         return answer;
