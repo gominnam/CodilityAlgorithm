@@ -12,11 +12,11 @@ class Person{// 값 2개 이상일 때 클래스 만들기
 }
 
 public class EmergencyRoom {
-    public int solve(int n, int m, int[] arr){
+    public int solve(int n, int m, int[] risks){
         int answer = 0;
         Queue<Person> Q = new LinkedList<>();
         for(int i=0; i<n; i++){
-            Q.offer(new Person(i, arr[i]));// 객체 생성하고 offer!
+            Q.offer(new Person(i, risks[i]));// 객체 생성하고 offer!
         }
         while(!Q.isEmpty()){
             Person p = Q.poll();
