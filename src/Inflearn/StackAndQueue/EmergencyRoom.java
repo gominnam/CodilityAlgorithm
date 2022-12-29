@@ -12,7 +12,7 @@ class Person{// 값 2개 이상일 때 클래스 만들기
 }
 
 public class EmergencyRoom {
-    public int Solve(int n, int m, int[] arr){
+    public int solve(int n, int m, int[] arr){
         int answer = 0;
         Queue<Person> Q = new LinkedList<>();
         for(int i=0; i<n; i++){
@@ -40,11 +40,13 @@ public class EmergencyRoom {
         EmergencyRoom T = new EmergencyRoom();
 
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        int[] arr = new int[n];
-        for(int i=0; i<n; i++) arr[i] = sc.nextInt();
-        System.out.println(T.Solve(n, m, arr));
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+        int[] risks = new int[N];
+        for(int i=0; i<N; i++){
+            risks[i] = sc.nextInt();
+        }
+        System.out.println(T.solve(N, M, risks));
     }
 }
 

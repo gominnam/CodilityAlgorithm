@@ -3,29 +3,21 @@ package Inflearn.StackAndQueue;
 import java.util.*;
 
 public class CurriculumDesign {
-    public String Solve(String t, String s){
-        String answer = "NO";
-        int i = 0;
-        Queue<Character> q = new LinkedList<Character>();
-        for(char c : s.toCharArray()) q.offer(c);
-        while(!q.isEmpty()){
-            if(q.poll() == t.charAt(i)){
-                i++;
-            }
-            if(i==t.length()) return "YES";
+    public String Solve(String requiredClasses, String curriculum){
+        Queue<Character> queue = new LinkedList<>();
+        for(char c : requiredClasses.toCharArray()){
+            queue.offer(c);
         }
 
-        /* 다른 방법
-        for(char x : s.toCharArray()){
-            if(q.contains(x)){
-                if(x!=q.poll()) return "NO";
+        for(char c : curriculum.toCharArray()){
+            if(queue.isEmpty()) return "YES";
+
+            if(queue.peek() == c){
+                queue.poll();
             }
         }
 
-        if(q.isEmpty()) return "NO";
-        */
-
-        return answer;
+        return "NO";
     }
 
     public static void main(String[] args){
