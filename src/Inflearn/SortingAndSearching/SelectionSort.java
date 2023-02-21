@@ -3,17 +3,20 @@ package Inflearn.SortingAndSearching;
 import java.util.*;
 
 public class SelectionSort {
-    public int[] Solve(int n, int[] arr){
-        for(int i=0; i<n; i++){
-            int idx = i;
-            for(int j=i+1; j<n; j++){
-                if(arr[j] < arr[idx]) idx = j;
+    public int[] Solve(int[] numbers){
+        for(int i=0; i<numbers.length-1; i++){
+            int minimumIndex = i;
+            for(int j=i+1; j<numbers.length; j++){
+                if(numbers[j] < numbers[minimumIndex]){
+                    minimumIndex = j;
+                }
             }
-            int tmp = arr[i];
-            arr[i] = arr[idx];
-            arr[idx] = tmp;
+            int swapValue = numbers[i];
+            numbers[i] = numbers[minimumIndex];
+            numbers[minimumIndex] = swapValue;
         }
-        return arr;
+
+        return numbers;
     }
 
     public static void main(String[] args){
@@ -25,7 +28,7 @@ public class SelectionSort {
         for(int i=0; i<n; i++){
             arr[i] = sc.nextInt();
         }
-        for(int x : T.Solve(n, arr)) System.out.print(x + " ");
+        for(int x : T.Solve(arr)) System.out.print(x + " ");
     }
 }
 

@@ -1,5 +1,7 @@
 package Inflearn.StackAndQueue;
 
+import Inflearn.Main;
+
 import java.util.*;
 
 class Person{// 값 2개 이상일 때 클래스 만들기
@@ -11,25 +13,26 @@ class Person{// 값 2개 이상일 때 클래스 만들기
     }
 }
 
-public class EmergencyRoom {
-    public int solve(int n, int m, int[] risks){
+public class EmergencyRoom {//todo: repeat
+    public int solve(int N, int M, int[] risks){
         int answer = 0;
-        Queue<Person> Q = new LinkedList<>();
-        for(int i=0; i<n; i++){
-            Q.offer(new Person(i, risks[i]));// 객체 생성하고 offer!
+        Queue<Person> patients = new LinkedList<>();
+        for(int i=0; i<N; i++){
+            patients.offer(new Person(i, risks[i]));
         }
-        while(!Q.isEmpty()){
-            Person p = Q.poll();
-            for(Person x : Q){
-                if(x.priority > p.priority){
-                    Q.offer(p);
-                    p = null;
-                    break;//하나만 offer해야 하므로 넣고 break;
+
+        while(!patients.isEmpty()){
+            Person curPatient = patients.poll();
+            for(Person p : patients){
+                if(p.priority > curPatient.priority){
+                    patients.offer(curPatient);
+                    curPatient = null;
+                    break;
                 }
             }
-            if(p != null){
+            if(curPatient != null){
                 answer++;
-                if(p.id==m) return answer;
+                if(curPatient.id == M) return answer;
             }
         }
 
