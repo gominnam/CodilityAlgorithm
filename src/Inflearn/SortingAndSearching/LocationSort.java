@@ -2,42 +2,40 @@ package Inflearn.SortingAndSearching;
 
 import java.util.*;
 
-class Point implements Comparable<Point>{
-    public int x, y;
-    Point(int x, int y){
-        this.x = x;
-        this.y =y;
-    }
-    @Override
-    public int compareTo(Point o){
-        if(this.x==o.x) return this.y -o.y; //오름차순되려면 음수 리턴 반대로 내림차순은 o.y - y; 를 리턴
-        else return this.x - o.x;
-    }
-}
 
-public class LocationSort {
-    public ArrayList<Point> Solve(int n, int[][] arr){
-        ArrayList<Point> arrPoint = new ArrayList<>();
-        for(int i=0; i<arr.length; i++){
-            arrPoint.add(new Point(arr[i][0], arr[i][1]));
+public class LocationSort {//todo: repeat
+    class Point implements Comparable<Point>{
+        public int x, y;
+        Point(int x, int y){
+            this.x = x;
+            this.y =y;
         }
-        Collections.sort(arrPoint);
+        @Override
+        public int compareTo(Point p){
+            if(this.x == p.x) return this.y - p.y; //오름차순되려면 음수 리턴 반대로 내림차순은 o.y - y; 를 리턴
+            else return this.x - p.x;
+        }
+    }
 
-        return arrPoint;
+    public ArrayList<Point> Solve(int[][] location){
+        ArrayList<Point> locationPoint = new ArrayList<>();
+        for(int i=0; i<location.length; i++){
+            locationPoint.add(new Point(location[i][0], location[i][1]));
+        }
+        Collections.sort(locationPoint);
+        return locationPoint;
     }
 
     public static void main(String[] args){
         LocationSort T = new LocationSort();
-
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[][] arr = new int[n][2];
+        int[][] location = new int[n][2];
         for(int i=0; i<n; i++){
-            arr[i][0] = sc.nextInt();
-            arr[i][1] = sc.nextInt();
+            location[i][0] = sc.nextInt();
+            location[i][1] = sc.nextInt();
         }
-
-        for(Point i : T.Solve(n, arr)){
+        for(Point i : T.Solve(location)){
             System.out.println(i.x + " " + i.y);
         }
     }

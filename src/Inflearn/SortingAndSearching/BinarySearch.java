@@ -3,18 +3,18 @@ package Inflearn.SortingAndSearching;
 import java.util.*;
 
 public class BinarySearch {
-    public int Solve(int n, int m, int[] arr){
+    public int Solve(int m, int[] numbers){
         int answer = 0;
-        Arrays.sort(arr);
-        int lt=0, rt=n-1;
+        Arrays.sort(numbers);
+        int lt=0, rt=numbers.length-1;
         while(lt<=rt){
             int mid = (lt+rt)/2;
-            if(arr[mid] == m) {
+            if(numbers[mid] == m) {
                 answer = mid+1;
                 break;
             }
-            if(arr[mid] > m) rt = mid-1;
-            else lt = mid + 1;
+            if(numbers[mid] > m) rt = mid-1;
+            else lt = mid+1;
         }
 
         return answer;
@@ -22,16 +22,14 @@ public class BinarySearch {
 
     public static void main(String[] args){
         BinarySearch T = new BinarySearch();
-
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-        int[] arr = new int[n];
+        int[] numbers = new int[n];
         for(int i=0; i<n; i++){
-            arr[i] = sc.nextInt();
+            numbers[i] = sc.nextInt();
         }
-
-        System.out.println(T.Solve(n, m, arr));
+        System.out.println(T.Solve(m, numbers));
     }
 }
 
