@@ -17,9 +17,9 @@ public class DecisionAlgorithm01 {
         return cnt;
     }
 
-    public int Solve(int n, int m, int[] arr){
+    public int Solve(int n, int m, int[] arr){//todo: repeat
         int answer = 0;
-        int lt=Arrays.stream(arr).max().getAsInt(); // stream 포인터 반복자 개념, 리덕션 함수
+        int lt=Arrays.stream(arr).max().getAsInt(); // stream(=Iterator 비슷) 포인터 반복자 개념, 리덕션 함수
         int rt=Arrays.stream(arr).sum();
         while(lt<=rt){
             int mid = (lt+rt)/2;
@@ -43,13 +43,12 @@ public class DecisionAlgorithm01 {
         for(int i=0; i<n; i++){
             arr[i] = sc.nextInt();
         }
-
         System.out.println(T.Solve(n, m, arr));
     }
 }
 
 /* lt |------------------------------------| rt 이 범위 안에 정답이 있다는게 확신이 있을 때 결정알고리즘을 사용(이분검색)
-      9                                   4 5
+      9                                    45
 
 설명
 

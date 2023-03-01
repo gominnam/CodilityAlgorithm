@@ -3,49 +3,43 @@ package Inflearn.SortingAndSearching;
 import java.util.*;
 
 public class DecisionAlgorithm02 {
-    public int caculation(int n, int[] arr){
-        int ep = arr[0], cnt = 1; // endPosition
-
-        for(int x : arr){
+    public int caculation(int n, int[] stalls){
+        int ep = stalls[0], cnt = 1; // endPosition
+        for(int x : stalls){
             if(x - ep >= n){
                 cnt++;
                 ep = x;
             }
         }
-
         return cnt;
     }
 
-    public int Solve(int n, int m, int[] arr){
+    public int Solve(int m, int[] stalls){
         int answer = 0;
-        Arrays.sort(arr);
+        Arrays.sort(stalls);
         int lt = 1;
-        int rt = Arrays.stream(arr).max().getAsInt();
-
+        int rt = Arrays.stream(stalls).max().getAsInt();
         while(lt <= rt){
             int mid = (lt+rt)/2;
-            if(caculation(mid, arr) >= m) {
+            if(caculation(mid, stalls) >= m) {
                 lt = mid+1;
                 answer = Math.max(answer, mid);
             }
             else rt = mid-1;
         }
-
         return answer;
     }
 
     public static void main(String[] args){
         DecisionAlgorithm02 T = new DecisionAlgorithm02();
-
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-        int[] arr = new int[n];
+        int[] stalls = new int[n];
         for(int i=0; i<n; i++){
-            arr[i] = sc.nextInt();
+            stalls[i] = sc.nextInt();
         }
-
-        System.out.println(T.Solve(n, m, arr));
+        System.out.println(T.Solve(m, stalls));
     }
 }
 /*

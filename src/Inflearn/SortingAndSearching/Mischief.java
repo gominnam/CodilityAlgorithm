@@ -6,7 +6,7 @@ public class Mischief {
     public ArrayList<Integer> Solve(int[] studentHeights){
         ArrayList<Integer> answer = new ArrayList<>();
         int[] heightClone = studentHeights.clone(); //Deep Copy
-        Arrays.sort(heightClone);
+        Arrays.sort(heightClone); // 참고: Arrays.sort(arr, Collections.reverseOrder()); 내림차순 정렬
         for(int i=0; i<studentHeights.length; i++){
             if(studentHeights[i] != heightClone[i]) answer.add(i+1);
         }
