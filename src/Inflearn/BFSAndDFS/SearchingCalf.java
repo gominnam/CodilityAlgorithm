@@ -1,4 +1,4 @@
-package Inflearn.RecursiveTreeGraph;
+package Inflearn.BFSAndDFS;
 
 import java.util.*;
 

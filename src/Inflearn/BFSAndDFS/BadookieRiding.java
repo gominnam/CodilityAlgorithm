@@ -3,31 +3,31 @@ package Inflearn.BFSAndDFS;
 import java.util.Scanner;
 
 public class BadookieRiding {
-    static int n, max, answer = Integer.MIN_VALUE;
+    static int allowableWeight, answer = Integer.MIN_VALUE;
 
-    public void DFS(int L, int sum, int[] arr){
-        if(sum > max) return;
-        if(L==n){
+    public void DFS(int L, int sum, int[] weights){
+        if(sum > allowableWeight) return;
+        if(L==weights.length){
             answer = Math.max(answer, sum);
             return;
         }
 
-        DFS(L+1, sum+arr[L], arr);
-        DFS(L+1, sum, arr);
+        DFS(L+1, sum+weights[L], weights);
+        DFS(L+1, sum, weights);
     }
 
 
     public static void main(String[] args){
         BadookieRiding T = new BadookieRiding();
         Scanner sc = new Scanner(System.in);
-        max = sc.nextInt();
-        n = sc.nextInt();
-        int[] arr = new int[n];
-        for(int i=0; i<n; i++){
-            arr[i] = sc.nextInt();
+        allowableWeight = sc.nextInt();
+        int N = sc.nextInt();
+        int[] weights = new int[N];
+        for(int i=0; i<N; i++){
+            weights[i] = sc.nextInt();
         }
 
-        T.DFS(0, 0, arr);
+        T.DFS(0, 0, weights);
         System.out.println(answer);
     }
 }

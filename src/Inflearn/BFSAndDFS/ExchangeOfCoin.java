@@ -5,7 +5,7 @@ import java.util.*;
 public class ExchangeOfCoin {
     static int n, money, answer = Integer.MAX_VALUE;
 
-    public void solution(int L, int sum, Integer[] arr){
+    public void solution(int L, int sum, Integer[] moneys){
         if(sum > money) return;
         if(L >= answer) return;
         if(sum == money){
@@ -13,7 +13,7 @@ public class ExchangeOfCoin {
         }
         else{
             for(int i=0; i<n; i++){
-                solution(L+1, sum+arr[i], arr);
+                solution(L+1, sum+moneys[i], moneys);
             }
         }
     }
@@ -22,15 +22,17 @@ public class ExchangeOfCoin {
         ExchangeOfCoin T = new ExchangeOfCoin();
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        Integer[] arr = new Integer[n];
-        for(int i=0; i<n; i++) arr[i] = sc.nextInt();
-        Arrays.sort(arr, Collections.reverseOrder());
+        Integer[] moneys = new Integer[n];
+        for(int i=0; i<n; i++) moneys[i] = sc.nextInt();
+        Arrays.sort(moneys, Collections.reverseOrder());
         money = sc.nextInt();
-        T.solution(0, 0, arr);
+        T.solution(0, 0, moneys);
         System.out.println(answer);
     }
 }
 /*
+동전교환
+
 설명
 
 다음과 같이 여러 단위의 동전들이 주어져 있을때 거스름돈을 가장 적은 수의 동전으로 교환해주려면 어떻게 주면 되는가?

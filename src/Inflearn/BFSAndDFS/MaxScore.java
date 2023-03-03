@@ -3,7 +3,7 @@ package Inflearn.BFSAndDFS;
 import java.util.*;
 
 public class MaxScore {
-    static int n, max, answer = Integer.MIN_VALUE;
+    static int n, allowableTime, answer = Integer.MIN_VALUE;
 
     static class Problem{
         int score;
@@ -15,15 +15,15 @@ public class MaxScore {
         }
     }
 
-    public void DFS(int L, int acScore, int acTime, ArrayList<Problem> arr){
-        if(acTime > max) return;
+    public void DFS(int L, int acScore, int acTime, ArrayList<Problem> problems){
+        if(acTime > allowableTime) return;
         if(L==n){
             answer = Math.max(answer, acScore);
         }
         else{
-            Problem np = arr.get(L);
-            DFS(L+1, acScore + np.score, acTime + np.time, arr);
-            DFS(L+1, acScore, acTime, arr);
+            Problem np = problems.get(L);
+            DFS(L+1, acScore + np.score, acTime + np.time, problems);
+            DFS(L+1, acScore, acTime, problems);
         }
     }
 
@@ -31,15 +31,15 @@ public class MaxScore {
         MaxScore T = new MaxScore();
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        max = sc.nextInt();
-        ArrayList<Problem> arr = new ArrayList<>();
+        allowableTime = sc.nextInt();
+        ArrayList<Problem> problems = new ArrayList<>();
         for(int i=0; i<n; i++){
             int s = sc.nextInt();
             int t = sc.nextInt();
-            arr.add(new Problem(s, t));
+            problems.add(new Problem(s, t));
         }
 
-        T.DFS(0, 0,0, arr);
+        T.DFS(0, 0,0, problems);
         System.out.println(answer);
     }
 }

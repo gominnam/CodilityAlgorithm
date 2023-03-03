@@ -5,9 +5,6 @@ import java.util.Arrays;
 public class DynamicProgramming {
     static int[][] cache = new int[30][30];
     public static void main(String[] args){
-//        for(int i=0; i<cache.length; i++){//-1로 초기화
-//            Arrays.fill(cache[i], -1);
-//        }
         bino2(10, 4);
         System.out.println(cache[10][4]);
     }
