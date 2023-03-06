@@ -14,12 +14,12 @@ public class mazeExploration {
         if(x == 6 && y == 6) answer++;
         else{
             for(int i=0; i<4; i++){
-                int nx = x + mx[i];
-                int ny = y + my[i];
-                if(nx < 0 || nx > 6 || ny < 0 || ny > 6 || map[nx][ny] == 1 || check[nx][ny]) continue;
-                check[nx][ny] = true;
-                solution(nx, ny);
-                check[nx][ny] = false;
+                int moveX = x + mx[i];
+                int moveY = y + my[i];
+                if(moveX < 0 || moveX > 6 || moveY < 0 || moveY > 6 || map[moveX][moveY] == 1 || check[moveX][moveY]) continue;
+                check[moveX][moveY] = true;
+                solution(moveX, moveY);
+                check[moveX][moveY] = false;
             }
         }
     }
@@ -27,7 +27,6 @@ public class mazeExploration {
     public static void main(String[] args){
         mazeExploration T = new mazeExploration();
         Scanner sc = new Scanner(System.in);
-
         for(int i=0; i<7; i++){
             for(int j=0; j<7; j++){
                 map[i][j] = sc.nextInt();
@@ -40,7 +39,7 @@ public class mazeExploration {
 }
 /*
 feedback
-==> 1. if(nx < 0 || nx > 6 || ny < 0 || ny > 6 || map[nx][ny] == 1 || check[nx][ny])에서 배열[][] 조건이 앞에 있으면 index = -1 로 에러가 난다 주의할 것(조건문 뒤에 넣을 것)
+==> 1. if(moveX < 0 || moveX > 6 || moveY < 0 || moveY > 6 || map[moveX][moveY] == 1 || check[moveX][moveY])에서 배열[][] 조건이 앞에 있으면 index = -1 로 에러가 난다 주의할 것(조건문 뒤에 넣을 것)
     2. check[][] 대신에 map에 1을 넣고 해도 똑같이 작동한다. (0일 경우에만 통로 지나갈 수 있으므로!!)
 
 미로탐색
