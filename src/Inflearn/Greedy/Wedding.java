@@ -4,24 +4,24 @@ import java.util.*;
 
 public class Wedding {
     public static class Time implements Comparable<Time>{
-        int i;
-        char o;//i : in, o : out
-        public Time(int i, char o){
-            this.i = i;
-            this.o = o;
+        int in;
+        char out;//i : in, o : out
+        public Time(int in, char out){
+            this.in = in;
+            this.out = out;
         }
         @Override
         public int compareTo(Time t){
-            if(this.i == t.i) return this.o- t.o;
-            return this.i - t.i;
+            if(this.in == t.in) return this.out-t.out;
+            return this.in-t.in;
         }
     }
 
-    public int solution(ArrayList<Time> arr){
+    public int solution(ArrayList<Time> times){
         int answer = Integer.MIN_VALUE;
-        Collections.sort(arr);
+        Collections.sort(times);
         int cnt = 0;
-        for(Time t : arr){
+        for(Time t : times){
             if(t.o == 'S') cnt++;
             else cnt--;
             answer = Math.max(answer, cnt);
@@ -34,20 +34,14 @@ public class Wedding {
         Wedding T = new Wedding();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        ArrayList<Time> arr = new ArrayList<>();
+        ArrayList<Time> times = new ArrayList<>();
         for(int i=0; i<n; i++){
             int t1 = sc.nextInt();
             int t2 = sc.nextInt();
-            arr.add(new Time(t1, 'S'));
-            arr.add(new Time(t2, 'E'));
+            times.add(new Time(t1, 'S'));
+            times.add(new Time(t2, 'E'));
         }
-        System.out.println(T.solution(arr));
-
-        String[] s = new String[10];
-        int a = s.length;
-
-        String test = "asd";
-        int b = test.length();
+        System.out.println(T.solution(times));
     }
 }
 

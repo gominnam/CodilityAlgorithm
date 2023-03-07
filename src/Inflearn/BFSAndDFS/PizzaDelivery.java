@@ -42,7 +42,6 @@ public class PizzaDelivery {
         m = sc.nextInt();
         pz = new ArrayList<>();
         hs = new ArrayList<>();
-
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
                 int tmp = sc.nextInt();

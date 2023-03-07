@@ -22,16 +22,13 @@ public class IslandCountry {
         Q.offer(new Point(x, y));
         map[x][y] = 0;
         while(!Q.isEmpty()){
-            int len = Q.size();
-            for(int i=0; i<len; i++){
-                Point p = Q.poll();
-                for(int j=0; j<8; j++){
-                    int nx = p.x + mx[j];
-                    int ny = p.y + my[j];
-                    if(nx >= 0 && nx < n && ny >= 0 && ny < n && map[nx][ny] == 1){
-                        Q.offer(new Point(nx, ny));
-                        map[nx][ny] = 0;
-                    }
+            Point p = Q.poll();
+            for(int j=0; j<8; j++){
+                int nx = p.x + mx[j];
+                int ny = p.y + my[j];
+                if(nx >= 0 && nx < n && ny >= 0 && ny < n && map[nx][ny] == 1){
+                    Q.offer(new Point(nx, ny));
+                    map[nx][ny] = 0;
                 }
             }
         }
