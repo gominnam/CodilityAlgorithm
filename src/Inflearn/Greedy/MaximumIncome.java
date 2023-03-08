@@ -5,15 +5,14 @@ import java.util.*;
 public class MaximumIncome {
 
     public static class Schedule implements Comparable<Schedule>{
-        int pay;
-        int day;
-        public Schedule(int p, int d){
-            this.pay = p;
-            this.day = d;
+        int pay, day;
+        public Schedule(int pay, int day){
+            this.pay = pay;
+            this.day = day;
         }
         @Override
         public int compareTo(Schedule s){
-            return s.day - this.day;//내림차순 정렬
+            return s.day-this.day;
         }
     }
 
@@ -77,7 +76,5 @@ TEST CASE:
 30 3
 30 1
 
-
 ==> 150
-
  */

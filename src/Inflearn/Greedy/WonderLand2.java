@@ -51,7 +51,7 @@ public class WonderLand2 {
     }
 }
 /*
-프림(PriorityQueue 방식)
+프림(PriorityQueue 방식) 시간복잡도: O(n^2) 간선이 밀집한 경우에는 크루스칼 보다 선호된다.
 - check 배열에서 정점을 지나가면 flag 표시 한다.
 
 설명

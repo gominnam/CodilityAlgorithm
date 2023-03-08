@@ -22,7 +22,7 @@ public class Wedding {
         Collections.sort(times);
         int cnt = 0;
         for(Time t : times){
-            if(t.o == 'S') cnt++;
+            if(t.out == 'S') cnt++;
             else cnt--;
             answer = Math.max(answer, cnt);
         }
@@ -30,7 +30,7 @@ public class Wedding {
         return answer;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args){//todo: repeat
         Wedding T = new Wedding();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();

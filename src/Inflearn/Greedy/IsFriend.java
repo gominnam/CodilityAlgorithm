@@ -3,16 +3,16 @@ package Inflearn.Greedy;
 import java.util.*;
 
 public class IsFriend {
-    static int[] unf;//union-find
+    static int[] unf;
 
-    public static int Find(int v){
+    public static int find(int v){
         if(v==unf[v]) return v;
-        else return unf[v]=Find(unf[v]);//값 갱신하고 return(경로를 단축할 수 있다.)
+        else return unf[v]=find(unf[v]);
     }
 
-    public static void Union(int a, int b){
-        int fa=Find(a);
-        int fb=Find(b);
+    public static void union(int a, int b){
+        int fa=find(a);
+        int fb=find(b);
         if(fa!=fb) unf[fa] = fb;
     }
 
@@ -26,19 +26,19 @@ public class IsFriend {
         for(int i=1; i<=m; i++){
             int a=sc.nextInt();
             int b=sc.nextInt();
-            Union(a, b);
+            union(a, b);
         }
         int a=sc.nextInt();
         int b=sc.nextInt();
-        int fa=Find(a);
-        int fb=Find(b);
+        int fa=find(a);
+        int fb=find(b);
         if(fa==fb) System.out.println("YES");
         else System.out.println("NO");
 
     }
 }
 /*
-feedback - (Disjoint-Set : Union&Find)
+feedback - (Disjoint-Set : union&find)
 
 
 설명

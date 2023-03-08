@@ -1,15 +1,15 @@
 package Inflearn.Greedy;
 
+import Inflearn.Main;
+
 import java.util.*;
 
 public class WonderLand {
-    static int n, m;
+    static int n, m, answer = 0;
     static int[] unf;
 
     static class Edge implements Comparable<Edge>{
-        public int v1;
-        public int v2;
-        public int cost;
+        public int v1, v2, cost;
         public Edge(int v1, int v2, int cost){
             this.v1 = v1;
             this.v2 = v2;
@@ -21,15 +21,19 @@ public class WonderLand {
         }
     }
 
-    public static int Find(int a){
+    public int find(int a){
         if(unf[a] == a) return a;
-        else return unf[a] = Find(unf[a]);
+        else return unf[a] = find(unf[a]);
     }
 
-    public static void Union(int a, int b){
-        int fa = Find(a);
-        int fb = Find(b);
-        if(fa != fb) unf[fa] = fb;
+    public boolean isUnion(Edge e){
+        int fa = find(e.v1);
+        int fb = find(e.v2);
+        if(fa != fb) {
+            unf[fa] = fb;
+            return false;
+        }
+        return true;
     }
 
     public static void main(String[] args){
@@ -46,26 +50,23 @@ public class WonderLand {
             int c = sc.nextInt();
             edge.add(new Edge(a, b, c));
         }
-        int answer = 0;
         int cnt = 0;
         Collections.sort(edge);
         for(Edge e : edge){
-            if(cnt == n-1) break; //for문 수가 많을 때
-            int f1 = Find(e.v1);
-            int f2 = Find(e.v2);
-            if(f1 != f2) {
+            if(cnt == n-1) break;
+            if(!T.isUnion(e)) {
                 answer += e.cost;
-                Union(e.v1, e.v2);
                 cnt++;
             }
         }
 
-        System.out.println(answer);
+        System.out.print(answer);
     }
 }
 
 /*
-최소스패닝트리 : 크루스칼, Union&Find 활용(최소 값으로 모든 노드 연결하기)
+최소스패닝트리(Minimum Spanning Tree) : 크루스칼 - 시간복잡도: O(nlogn)
+union&find 활용(최소 값으로 모든 노드 연결하기)
 
 설명
 
