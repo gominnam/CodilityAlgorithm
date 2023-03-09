@@ -2,28 +2,28 @@ package Inflearn.Dynamic;
 
 import java.util.Scanner;
 
-public class StairClimb {
-    static int[] dy;
-    public int solution(int n){
-        dy[1] = 1;
-        dy[2] = 2;
-        for(int i=3; i<=n+1; i++){
-            dy[i] = dy[i-2] +dy[i-1];
-        }
-        return dy[n+1];
+public class StairClimbTopDown {
+    static int[] floorWays;
+
+    public int solve(int floor){
+        if(floor < 3) return floorWays[floor];
+        if(floorWays[floor] != 0) return floorWays[floor];
+        return floorWays[floor] = solve(floor-1) + solve(floor-2);
     }
 
     public static void main(String[] args){
-        StairClimb T = new StairClimb();
+        StairClimbTopDown T = new StairClimbTopDown();
         Scanner sc = new Scanner(System.in);
-        int n=sc.nextInt();
-        dy=new int[n+2];
-        System.out.println(T.solution(n));
+        int floor = sc.nextInt();
+        floorWays = new int[floor+1];
+        floorWays[1] = 1;
+        floorWays[2] = 2;
+        System.out.print(T.solve(floor));
     }
 }
 /*Dynamic Programming
-feedback - 메모제이션과 반복문으로 작은 단계단계 계산해나가는 방법(Bottom Up)
->> 장점: 처리시간과 리소스측면에서는 좋지만 소스 가독성이 안좋은게 단점이다.
+feedback - 재귀호출로 푸는 방법(Top Down)
+>> 장점: 소스로 인한 가독성이 좋지만 자원사용과 효율성이 Bottom Up 보다 떨어진다.
 
 계단오르기
 

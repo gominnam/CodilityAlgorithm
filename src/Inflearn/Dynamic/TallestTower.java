@@ -16,20 +16,20 @@ public class TallestTower {
             this.w = w;
         }
         public int compareTo(Brick b){
-            if(b.e == this.e) return b.w = this.w;
+            if(b.e == this.e) return b.w - this.w;
             return b.e - this.e;
         }
     }
 
-    public int solution(ArrayList<Brick> arr){
+    public int solution(ArrayList<Brick> bricks){
         int answer = 0;
-        Collections.sort(arr);
-        dy[0] = arr.get(0).h;
-        for(int i=1; i<arr.size(); i++){
-            Brick b = arr.get(i);
+        Collections.sort(bricks);
+        dy[0] = bricks.get(0).h;
+        for(int i=1; i<bricks.size(); i++){
+            Brick b = bricks.get(i);
             int max = 0;
             for(int j=i-1; j>=0; j--){
-                Brick tmp = arr.get(j);
+                Brick tmp = bricks.get(j);
                 if(b.w < tmp.w && b.e < tmp.e && dy[j] > max) max = dy[j];
             }
             dy[i] = max + b.h;
@@ -44,19 +44,19 @@ public class TallestTower {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         dy = new int[n];
-        ArrayList<Brick> arr = new ArrayList<>();
+        ArrayList<Brick> bricks = new ArrayList<>();
         for(int i=0; i<n; i++){
             int a = sc.nextInt();
             int b = sc.nextInt();
             int c = sc.nextInt();
-            arr.add(new Brick(a, b, c));
+            bricks.add(new Brick(a, b, c));
         }
         if(n==1) {
-            System.out.println(arr.get(0).h);
+            System.out.println(bricks.get(0).h);
             return;
         }
 
-        System.out.println(T.solution(arr));
+        System.out.println(T.solution(bricks));
     }
 }
 /*

@@ -2,40 +2,49 @@ package Inflearn.Dynamic;
 
 import java.util.Scanner;
 
-public class LongestIncreasingSubsequence {
-    static int[] subsequenceCnt;
+public class LongestIncreasingSubsequenceBinarySearch {
+    static int[] dp;
     int answer = Integer.MIN_VALUE;
 
-    public int solve(int[] nums){
-        for(int i=0; i<nums.length; i++){
-            subsequenceCnt[i] = 1;
-            for(int j=0; j<=i; j++){
-                if(nums[i] > nums[j]){
-                    subsequenceCnt[i] = Math.max(subsequenceCnt[i], subsequenceCnt[j]+1);
-                }
+    public int binarySearch(int left, int right, int key){
+        int mid;
+        while(left < right){
+            mid = (left+right)/2;
+            if(dp[mid] < key){
+                left = mid+1;
             }
-            answer = Math.max(answer, subsequenceCnt[i]);
+            else{
+                right = mid;
+            }
         }
-        return answer;
+        return right;
     }
 
-
     public static void main(String[] args){
-        LongestIncreasingSubsequence T = new LongestIncreasingSubsequence();
+        LongestIncreasingSubsequenceBinarySearch T = new LongestIncreasingSubsequenceBinarySearch();
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int[] nums = new int[N];
-        subsequenceCnt = new int[N];
+        dp = new int[N+1];
+        int len = 0;
         for(int i=0; i<N; i++){
             nums[i] = sc.nextInt();
+            if(nums[i] > dp[len]){
+                len++;
+                dp[len] = nums[i];
+            }
+            else{
+                int index = T.binarySearch(0, len, nums[i]);
+                dp[index] = nums[i];
+            }
         }
-        System.out.print(T.solve(nums));
+        System.out.print(len);
     }
 }
 /*
 feedback - LIS(LongestIncreasingSubsequence)
-Dynamic Programming 방식으로 시간복잡도: O(n^2)
-==> 더 좋은 대안인 이분탐색 방식(LongestIncreasingSubsequenceBinarySearch.class 파일 참고)
+BinarySearch 방식으로 시간복잡도: O(NlogN)
+==> 더 좋은 대안인 이분탐색 방법
 
 설명
 
