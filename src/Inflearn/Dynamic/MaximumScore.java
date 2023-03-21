@@ -1,21 +1,43 @@
 package Inflearn.Dynamic;
 
+import Inflearn.Main;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MaximumScore {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        int[] dy = new int[m+1];
-        for(int i=0; i<n; i++){
-            int ps = sc.nextInt();
-            int pt = sc.nextInt();
-            for(int j=m; j>=pt; j--){
-                dy[j] = Math.max(dy[j], dy[j-pt] + ps);
+    static int[] dp;
+    static int N, limitTime;
+
+    public static class Question{
+        public int score, time;
+        public Question(int s, int t){
+            this.score = s;
+            this.time = t;
+        }
+    }
+
+    public int solve(ArrayList<Main.Question> questions){
+        for(int i=0; i<N; i++){
+            Main.Question q = questions.get(i);
+            for(int j=limitTime; j>=q.time; j--){
+                dp[j] = Math.max(dp[j], dp[j-q.time]+q.score);
             }
         }
-        System.out.println(dy[m]);
+        return dp[limitTime];
+    }
+
+    public static void main(String[] args){
+        MaximumScore ms = new MaximumScore();
+        Scanner sc = new Scanner(System.in);
+        N = sc.nextInt();
+        limitTime = sc.nextInt();
+        ArrayList<Main.Question> questions = new ArrayList<>();
+        for(int i=0; i<N; i++) {
+            questions.add(new Main.Question(sc.nextInt(), sc.nextInt()));
+        }
+        dp = new int[limitTime+1];
+        System.out.print(ms.solve(questions));
     }
 }
 /*

@@ -7,7 +7,6 @@ public class ExchangeOfCoins {
     static int n, m;
 
     public int solution(int[] coin){
-        Arrays.fill(dy, Integer.MAX_VALUE);
         dy[0] = 0;
         for(int i=0; i<n; i++){
             for(int j=coin[i]; j<=m; j++){
@@ -17,23 +16,24 @@ public class ExchangeOfCoins {
         return dy[m];
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args){//todo: repeat
         ExchangeOfCoins T = new ExchangeOfCoins();
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        int[] arr = new int[n];
+        int[] coins = new int[n];
         for(int i=0; i<n; i++){
-            arr[i] = sc.nextInt();
+            coins[i] = sc.nextInt();
         }
         m = sc.nextInt();
         dy = new int[m+1];
-        System.out.println(T.solution(arr));
+        Arrays.fill(dy, Integer.MAX_VALUE);
+        System.out.println(T.solution(coins));
     }
 }
 /*
 feedback - Knapsack Algorithm[배낭 알고리즘]
-         - 큰 수부터 차례로 나누는 간단한 로직으로는 1원이 없을 때 전부 못거슬러주는 문제가 생길 수 있다. 그러므로 dp를 사용해야 한다.
-         - 1이 없으면..? 에러가 뜬다. 어떻게 해야할까(나머지를 못나눠주니 상관 없으려나 고민)
+=> Dynamic Programming 사용
+=> DFS 는 시간초과 에러
 
 설명
 
@@ -60,4 +60,19 @@ TEST CASE:
 15
 
 ==> 3
+
+
+//dfs 로는 time limit exceeded Error!!
+public void dfs(int L, int count, int money){
+        if(L==N && money == 0){
+            answer = Math.min(answer, count);
+        }
+        if(count > answer) return;
+        for(int i=L; i<N; i++){
+            int curM = coins.get(L);
+            for (int j=0; j<=money/curM; j++){
+                dfs(L+1, count+j, money-curM*j);
+            }
+        }
+    }
  */
