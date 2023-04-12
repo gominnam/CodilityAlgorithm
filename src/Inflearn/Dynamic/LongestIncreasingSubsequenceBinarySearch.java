@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class LongestIncreasingSubsequenceBinarySearch {
     static int[] dp;
-    int answer = Integer.MIN_VALUE;
 
     public int binarySearch(int left, int right, int key){
         int mid;
