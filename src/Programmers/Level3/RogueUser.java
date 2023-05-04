@@ -37,6 +37,7 @@ public class RogueUser {
                     }
                 }
                 if(flag) banId[i].add(user_id[j]);
+                //user_id[j].matches
             }
         }
         calculator(0, banId, new HashSet<>());
@@ -65,8 +66,10 @@ HashSet은 무작위로 저장하기 때문에 순서를 보장해주지 않는�
 
 [ More Things ]
 - Deep Copy
-- LinkedHashSet은 add 순서를 보장 함.
-
-
+- LinkedHashSet은 add 순서를 보장 함
+- 정규표현식
+String reg = banned_id[i].replace("*", "[\\w\\d]");
+\\w : 문자만, \\W : 문자가 아닌경우에만
+\\d : 숫자만, \\D : 숫자가 아닌경우에만
 
  */
