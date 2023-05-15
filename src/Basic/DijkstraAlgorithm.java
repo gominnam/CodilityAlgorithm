@@ -35,7 +35,7 @@ public class DijkstraAlgorithm {
         // 최단 거리 출력
         System.out.println("최단 거리:");
         for (int i = 0; i < n; i++) {
-            System.out.println(start + "에서 " + i + "까지의 거리: " + dist[i]);
+            System.out.println(start+1 + "에서 " + (i+1) + "까지의 거리: " + dist[i]);
         }
     }
 
