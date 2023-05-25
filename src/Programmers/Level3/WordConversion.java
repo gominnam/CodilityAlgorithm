@@ -2,6 +2,7 @@ package Programmers.Level3;
 
 public class WordConversion {
     static boolean[] check;
+    static boolean flag = false;
     static int answer = Integer.MAX_VALUE;
 
     public boolean isConversion(String a, String b){
@@ -17,6 +18,7 @@ public class WordConversion {
     public void dfs(int L, String w, String t, String[] words){
         if(w.equals(t)) {
             answer = Math.min(answer, L);
+            flag = true;
             return;
         }
         for(int i=0; i<words.length; i++){
@@ -32,7 +34,7 @@ public class WordConversion {
     public int solution(String begin, String target, String[] words) {
         check = new boolean[words.length];
         dfs(0, begin, target, words);
-        if(answer != Integer.MAX_VALUE) return answer;
+        if(flag) return answer;
         return 0;
     }
 
