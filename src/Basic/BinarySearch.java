@@ -19,5 +19,8 @@ public class BinarySearch {
     }
 }
 /*
-        ## 이진탐색
+Binary Search (이진탐색)
+
+정렬된 배열에서 특정 값의 인덱스를 찾는 방법
+
  */
