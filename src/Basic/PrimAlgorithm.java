@@ -85,6 +85,9 @@ public class PrimAlgorithm {
 1. 우선순위 큐를 사용하여 간선 가중치를 관리
 2. 인접리스트나 인접행렬을 활용하여 그래프를 표현한다.
 
+parent 배열은 index의 노드가 연결된 노드 정보를 갖는다.
+key 배열은 index의 노드와 연결된 가중치 정보를 갖는다.
+
 ref - chatGPT
 
 
