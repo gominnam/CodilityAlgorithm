@@ -61,5 +61,7 @@ public class TripRoute {
 다른 접근 방법 해결 방안
 다른 풀이 소스를 보니 Stack을 사용하여 해결
 생각해볼 것
+Arrays.sort(tickets, Comparator.comparing((String[] row) -> row[1]));
+Arrays.sort(tickets, Comparator.comparing((String[] row) -> row[1]));//reversed();
 
  */
