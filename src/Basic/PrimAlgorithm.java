@@ -8,7 +8,7 @@ public class PrimAlgorithm {
     public void primMST(int[][] graph) {
         int V = graph.length; // 정점의 개수
         int[] parent = new int[V]; // 최소 신장 트리에서 각 정점의 부모 정점을 저장할 배열
-        int[] key = new int[V]; // 최소 신장 트리에서 해당 정점과 연결된 간선의 가중치를 저장할 배열
+        int[] key = new int[V]; // 최소 신장 트리에서 해당 정점과 연결된 간선의 가중치를 저장할 배열 (= dist)
         boolean[] visited = new boolean[V]; // 방문 여부를 저장할 배열
 
         // key 배열을 무한대로 초기화하고, 모든 정점을 방문하지 않은 상태로 설정

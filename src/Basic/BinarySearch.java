@@ -9,7 +9,7 @@ public class BinarySearch {
 
     public static int binarySearch(int[] arr, int x){
         int lo = 0, hi = arr.length-1;
-        while(lo + 1 < hi){
+        while(lo+1 < hi){
             int mid = (lo + hi) / 2;
             if(arr[mid] < x) lo = mid;
             else hi = mid;
