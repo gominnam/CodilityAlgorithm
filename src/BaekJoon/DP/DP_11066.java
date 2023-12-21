@@ -4,40 +4,33 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 public class DP_11066 {
-    public static int getMinCost(int[] numbers){
-        int N = numbers.length;
-        int[][] dp = new int[N][N];
-        int[] sum = new int[N+1];
-        for(int i=0; i<N; i++){
-            sum[i+1] = sum[i] + numbers[i];
+    static int[] ar = new int[501];
+    static int[][] dp = new int[501][501];
+    static int[] mem = new int[501];
+
+    public static int getMinCost(int i, int j){
+        if(i == j) return 0;
+        if(dp[i][j] != 0) return dp[i][j];
+        dp[i][j] = Integer.MAX_VALUE;
+        for(int k=i; k<j; k++){
+            dp[i][j] = Math.min(dp[i][j], getMinCost(i, k) + getMinCost(k+1, j));
         }
-        for(int i=0; i<N-1; i++){
-            dp[i][i+1] = numbers[i] + numbers[i+1];
-        }
-        for(int i=2; i<N; i++){
-            for(int j=0; j<N-i; j++){
-                dp[j][j+i] = Integer.MAX_VALUE;
-                for(int k=0; k<i; k++){
-                    int test = dp[j][j+k] + dp[j+k+1][j+i] + sum[j+i+1] - sum[j];
-                    dp[j][j+i] = Math.min(dp[j][j+i], dp[j][j+k] + dp[j+k+1][j+i] + sum[j+i+1] - sum[j]);
-                }
-            }
-        }
-        return dp[0][N-1];
+        return dp[i][j] += mem[j] - (i > 0 ? mem[i-1] : 0); // cache the result
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int T = Integer.parseInt(br.readLine());
-        for(int i=0; i<T; i++){
+        while(T-- > 0){
+            dp = new int[501][501];
             int K = Integer.parseInt(br.readLine());
-            int[] numbers = new int[K];
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-            for(int j=0; j<K; j++){
-                numbers[j] = Integer.parseInt(st.nextToken());
+            for(int i=0; i<K; i++){
+                ar[i] = Integer.parseInt(st.nextToken());
+                mem[i] = ar[i] + (i > 0 ? mem[i - 1] : 0);
             }
-            bw.write(getMinCost(numbers)+ "\n");
+            bw.write(getMinCost(0, K-1)+ "\n");
         }
         bw.flush();
         bw.close();
