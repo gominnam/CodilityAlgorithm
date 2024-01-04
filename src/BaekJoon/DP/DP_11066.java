@@ -8,7 +8,7 @@ public class DP_11066 {
     static int[][] dp = new int[501][501];
     static int[] mem = new int[501];
 
-    public static int getMinCost(int i, int j){
+    public static int getMinCost(int i, int j){//start, end
         if(i == j) return 0;
         if(dp[i][j] != 0) return dp[i][j];
         dp[i][j] = Integer.MAX_VALUE;
@@ -49,6 +49,8 @@ TEST CASE:
     [ TIP ]
 - Solve: 동적계획법 + 누적합
 - 점화식: DP[start][end] = DP[start][mid] + DP[mid+1][end] + (files[end] - files[start-1])
+- f(p, q) = minimum(f(p, p) + f(p+1, q)) or (f(p, p+1) + f(p+2, q)) or ... or (f(p, q-1) + f(q, q))
+- Bottom-up 방식으로 풀이
 
 
 누적합 DP의 기본 식: f(x) = f(x-1) + Ax ...
