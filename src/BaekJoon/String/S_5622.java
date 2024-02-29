@@ -13,7 +13,7 @@ public class S_5622 {
         T(8), U(8), V(8),
         W(9), X(9), Y(9), Z(9);
 
-        private int time;
+        private final int time;
 
         Dial(int time) {
             this.time = time;
@@ -39,6 +39,11 @@ public class S_5622 {
 
 /*
 
-- enum 열거형 상수 사용하여 소스 간결화
+1. enum 열거형 상수 사용하여 소스 간결화 -> 코드 가독성과 유지보수 향상
+
+2. enum 의 메소드 사용
+values(): Enum의 모든 상수를 포함하는 배열을 반환합니다.
+valueOf(String name): 주어진 이름과 일치하는 Enum 상수를 반환합니다.
+ordinal(): Enum 상수의 선언된 순서를 반환합니다(0부터 시작).
 
  */
