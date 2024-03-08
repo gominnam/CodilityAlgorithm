@@ -54,3 +54,28 @@ public class DB_1260 {
         db_1260.BFS(graph, start, new boolean[N+1]);
     }
 }
+
+/*
+
+- DFS: 깊이 우선 탐색
+
+start 지점부터 visited = true
+graph 크기만큼 for문
+둘 사이에 간선이 있는지, visited 배열을 통해 방문한 노드인지 확인 후 방문 안하면 재귀 호출
+
+
+- BFS: 너비 우선 탐색
+
+TEST CASE:
+4 5 1
+1 2
+1 3
+1 4
+2 4
+3 4
+
+==>
+1 2 4 3
+1 2 3 4
+
+ */
