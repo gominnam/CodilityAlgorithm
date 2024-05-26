@@ -1,46 +1,52 @@
 package Inflearn.Array;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class TemporaryClass {//todo: repeat
-    public int Solve(int n, int[][] arr){
-        int answer = 0;
-        int max = 0;
-
-        for(int i=0; i<n; i++){
-            boolean check[] = new boolean[n];
-            for(int j=0; j<5; j++){
-                for(int k=0; k<n; k++){
-                    if(check[k]) continue;
-                    if(arr[i][j] == arr[k][j]) check[k] = true;
-                }
-            }
-            int cnt = 0;
-            for(int z=0; z<n; z++){
-                if(check[z]) cnt++;
-            }
-            if(cnt > max) {
-                max = cnt;
-                answer = i+1;
-            }
-        }
-
-        return answer;
-    }
-
-    public static void main(String[] args){
+public class TemporaryClass {
+    public static void main(String[] args) throws IOException {
         TemporaryClass  T = new TemporaryClass();
-
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
         int[][] arr = new int[n][5];
         for(int i=0; i<n; i++){
+            String[] str = br.readLine().split(" ");
             for(int j=0; j<5; j++){
-                arr[i][j] = sc.nextInt();
+                arr[i][j] = Integer.parseInt(str[j]);
+            }
+        }
+        System.out.print(T.findTemporaryCaptain(n, arr));
+    }
+
+    public int findTemporaryCaptain(int studentCount, int[][] classData){
+        int tempCaptain = 1;
+        int maxSharedStudentCount = 0;
+
+        for(int i=0; i<studentCount; i++){
+            boolean[] hasSharedClassWith = new boolean[studentCount];
+            for(int j=0; j<5; j++){
+                for(int k=0; k<studentCount; k++){
+                    if(i == k) continue;
+                    if(classData[i][j] == classData[k][j]) hasSharedClassWith[k] = true;
+                }
+            }
+            int sharedStudentCount = countSharedStudents(hasSharedClassWith);
+            if(sharedStudentCount > maxSharedStudentCount) {
+                maxSharedStudentCount = sharedStudentCount;
+                tempCaptain = i+1;
             }
         }
 
-        System.out.println(T.Solve(n, arr));
+        return tempCaptain;
+    }
+
+    private int countSharedStudents(boolean[] hasSharedClassWith){
+        int count = 0;
+        for(boolean shared : hasSharedClassWith){
+            if(shared) count++;
+        }
+        return count;
     }
 }
 /*
