@@ -4,7 +4,7 @@ import java.util.*;
 
 public class DuplicateCharacterDelite {
     public String solution(String str){
-        String answer = "";
+        StringBuilder answer = new StringBuilder();
         ArrayList<Character> arr = new ArrayList<>();
         char[] c = str.toCharArray();
         for(char x : c){
@@ -13,10 +13,10 @@ public class DuplicateCharacterDelite {
         }
 
         for(char x : arr){
-            answer += x;
+            answer.append(x);
         }
 
-        return answer;
+        return answer.toString();
     }
 
     public static void main(String[] args){

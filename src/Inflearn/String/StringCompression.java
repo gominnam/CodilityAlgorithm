@@ -4,14 +4,14 @@ import java.util.*;
 
 public class StringCompression { //todo: repeat
     public void solution(String str){
-        String answer = "";
+        StringBuilder answer = new StringBuilder();
         str += " ";
         int cnt = 1;
         for(int i=0; i<str.length()-1; i++){
             if(str.charAt(i) == str.charAt(i+1)) cnt++;
             else{
-                answer += str.charAt(i);
-                if(cnt > 1) answer += cnt;
+                answer.append(str.charAt(i));
+                if(cnt > 1) answer.append(cnt);
                 cnt = 1;
             }
         }

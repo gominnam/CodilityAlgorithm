@@ -2,34 +2,27 @@ package Inflearn.String;
 
 import java.util.*;
 
-public class ShortestWordDistance {//todo: repeat
-    public void solution(String str, char c){
-        int[] arr = new int[str.length()];
-        int p = 10000000;
+public class ShortestWordDistance {
+    public String solution(String str, char c){
+        StringBuilder sb = new StringBuilder();
         for(int i=0; i<str.length(); i++){
-            if(str.charAt(i) == c){
-                p=0;
-                arr[i] = p++;
+            int right = str.length();
+            int left = str.length();
+            for(int j=i; j>=0; --j){
+                if(str.charAt(j) == c){
+                    left = i - j;
+                    break;
+                }
             }
-            else{
-                arr[i] = p++;
+            for(int j=i; j<str.length(); j++){
+                if(str.charAt(j) == c){
+                    right = j - i;
+                    break;
+                }
             }
+            sb.append(Math.min(left, right)).append(" ");
         }
-
-        p = 10000000;
-        for(int i=str.length()-1; i>=0; i--){
-            if(str.charAt(i) == c) {
-                p = 0;
-                p++;
-            }
-            else{
-                arr[i] = Math.min(arr[i], p++);
-            }
-        }
-
-        for(int i=0; i<str.length();i++){
-            System.out.print(arr[i] + " ");
-        }
+        return sb.toString();
     }
 
     public static void main(String[] args){
@@ -39,7 +32,7 @@ public class ShortestWordDistance {//todo: repeat
         String str = sc.next();
         char c =sc.next().charAt(0);
 
-        T.solution(str, c);
+        System.out.print(T.solution(str, c));
     }
 }
 /*
