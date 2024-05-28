@@ -1,45 +1,46 @@
 package Inflearn.Array;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Mountaintop {
-    int[] mX = {-1, 1, 0, 0};
-    int[] mY = {0, 0, -1, 1};
-
-    public int Solve(int n, int[][] arr){
-        int answer = 0;
-
-        for(int i=0; i<n ;i++){
-            for(int j=0; j<n; j++){
-                boolean flag = true;
+    public int countPeak(int[][] arr){
+        int peaks = 0;
+        int[] moveX = {-1, 1, 0, 0};
+        int[] moveY = {0, 0, -1, 1};
+        for(int i=0; i<arr.length; i++){
+            for(int j=0; j<arr.length; j++){
+                boolean isPeak = true;
                 for(int k=0; k<4; k++){
-                    int nx = i+mX[k];
-                    int ny = j+mY[k];
-                    if(nx >= 0 && nx < n && ny >=0 && ny < n &&arr[nx][ny] >= arr[i][j]){
-                        flag = false;
-                        break;
+                    int nextX = i + moveX[k];
+                    int nextY = j + moveY[k];
+                    if(nextX >= 0 && nextX < arr.length && nextY >= 0 && nextY < arr.length){
+                        if(arr[nextX][nextY] >= arr[i][j]){
+                            isPeak = false;
+                            break;
+                        }
                     }
                 }
-                if(flag) answer++;
+                if(isPeak) peaks++;
             }
         }
-
-        return answer;
+        return peaks;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         Mountaintop T = new Mountaintop();
-
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        int arr[][] = new int[num][num];
-        for(int i=0; i<num; i++){
-            for (int j=0; j<num; j++){
-                arr[i][j] = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[][] arr = new int[n][n];
+        for(int i=0; i<n; i++){
+            String[] str = br.readLine().split(" ");
+            for(int j=0; j<n; j++){
+                arr[i][j] = Integer.parseInt(str[j]);
             }
         }
 
-        System.out.println(T.Solve(num, arr));
+        System.out.println(T.countPeak(arr));
     }
 }
 /*
