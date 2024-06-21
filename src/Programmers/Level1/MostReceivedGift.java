@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class MostRecivedGift {
+public class MostReceivedGift {
 
     public static void main(String[] args){
         String[] friends = {"joy", "brad", "alessandro", "conan", "david"};
@@ -24,19 +24,16 @@ public class MostRecivedGift {
         }
 
         int answer = 0;
-        for(String friend : friends){
+        for(String giver : friends){
             int received = 0;
-            int sent = map.get(friend).getOrDefault(friend, 0);
-            for(String key : map.get(friend).keySet()){
-                if(key.equals(friend)) continue;
-                if(Objects.equals(map.get(friend).get(key), map.get(key).get(key))){
-                    if(sent > map.get(key).get(key)) received++;
-                }
-                else{
-                    if(map.get(friend).getOrDefault(key, 0) > map.get(key).getOrDefault(friend, 0)) received++;
-                }
+            int giftIndex = map.get(giver).getOrDefault(giver, 0);
+            for(String receiver : friends){
+                if(giver.equals(receiver)) continue;
+                if(map.get(receiver).getOrDefault(giver, 0) > map.get(giver).getOrDefault(receiver, 0))
+                    received++;
+                if(Objects.equals(map.get(receiver).getOrDefault(giver, 0), map.get(giver).getOrDefault(receiver, 0)))
+                    if(giftIndex > map.get(receiver).getOrDefault(receiver, 0)) received++;
             }
-
             answer = Math.max(answer, received);
         }
         System.out.println(answer);
