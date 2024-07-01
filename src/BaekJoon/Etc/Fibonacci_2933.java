@@ -8,9 +8,9 @@ public class Fibonacci_2933 {
     public static final long MOD = 1000000L;
     public static final long[][] unitMatrix = {{1, 1}, {1, 0}};
 
-    static long[][] pow(long exp) {
+    static long[][] pow(long exp) { // exponential: 지수
         if (exp == 0) {
-            return new long[][]{{1, 0}, {0, 1}};
+            return new long[][]{{1, 0}, {0, 1}}; // 항등원
         }
         long[][] matrix = pow(exp / 2);
         matrix = multiply(matrix, matrix);
@@ -37,7 +37,7 @@ public class Fibonacci_2933 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         long n = Long.parseLong(br.readLine());
         long[][] result = pow(n - 1);
-        System.out.println(result[0][0]);;
+        System.out.println(result[0][0]);
     }
 }
 
