@@ -60,6 +60,9 @@ Thinking:
 Two Pointer로 제출하면 시간초과 발생
 System.out.print() 대신에 BufferedWriter를 사용하여 시간초과 문제 해결
 
+dp에서 초기값 세팅을 어떻게 할지가 관건
+palindrome에서는 1과 2의 길이를 먼저 세팅하고 해야함.
+
 
 #1) BufferedWriter
 : 내부적으로 버퍼를 사용하여 출력 데이터를 임시 저장.
