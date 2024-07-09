@@ -8,39 +8,40 @@ import java.io.OutputStreamWriter;
 public class DP_17404 {
     static final int INF = 1000001;
     static int N;
-    static int[][][] dp;
+    static int[][] dp;
     static int[][] cost;
 
-    public static void calculator(){
-        for (int firstColor = 0; firstColor < 3; firstColor++) {
-            // 첫 번째 집의 색을 고정하고 초기화
-            for (int color = 0; color < 3; color++) {
-                if (color == firstColor) {
-                    dp[firstColor][0][color] = cost[0][color];
+    public static int calculator(){
+        int answer = INF;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                //첫번째 집의 색을 고정하고 계산
+                if (i == j) {
+                    dp[0][j] = cost[0][j];
                 } else {
-                    dp[firstColor][0][color] = INF;
+                    dp[0][j] = INF;
                 }
             }
-
-            // 나머지 집들에 대한 DP 계산
-            for (int i = 1; i < N; i++) {
-                for (int color = 0; color < 3; color++) {
-                    dp[firstColor][i][color] = cost[i][color] + Math.min(
-                            // (color+1)%3 은 현재 색과 다른 색을 색칠하기 위함(3가지 색이 있어서 %3 계산)
-                            dp[firstColor][i-1][(color+1)%3],
-                            dp[firstColor][i-1][(color+2)%3]
-                    );
+            for (int j = 1; j < N; j++) {
+                dp[j][0] = Math.min(dp[j - 1][1], dp[j - 1][2]) + cost[j][0];
+                dp[j][1] = Math.min(dp[j - 1][0], dp[j - 1][2]) + cost[j][1];
+                dp[j][2] = Math.min(dp[j - 1][0], dp[j - 1][1]) + cost[j][2];
+            }
+            for (int j = 0; j < 3; j++) {
+                if (i != j) {
+                    answer = Math.min(answer, dp[N - 1][j]); //1번집과 n번집은 달라야함
                 }
             }
         }
+        return answer;
     }
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         N = Integer.parseInt(br.readLine());
-        dp = new int[3][N][3];
-        cost = new int[N + 1][3];
+        dp = new int[N][3];
+        cost = new int[N][3];
         for(int i=0; i<N; i++) {
             String[] input = br.readLine().split(" ");
             int r = Integer.parseInt(input[0]);
@@ -50,17 +51,7 @@ public class DP_17404 {
             cost[i][1] = g;
             cost[i][2] = b;
         }
-        // 조건이 원형 테이블 마지막이랑 첫번째 색깔 같으면 안된다.
-        calculator();
-        int answer = INF;
-        for (int firstColor = 0; firstColor < 3; firstColor++) {
-            for (int color = 0; color < 3; color++) {
-                if (color != firstColor) {
-                    answer = Math.min(answer, dp[firstColor][N-1][color]);
-                }
-            }
-        }
-        bw.write(String.valueOf(answer));
+        bw.write(String.valueOf(calculator()));
         bw.flush();
         bw.close();
         br.close();
