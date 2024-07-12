@@ -18,11 +18,9 @@ public class B_12886 {
     }
 
     private static int bfs() {
-        boolean[][] visit = new boolean[3][1501];
+        boolean[][] visit = new boolean[1501][1501];
         ArrayDeque<int[]> q = new ArrayDeque<>();
-        visit[0][A] = true;
-        visit[1][B] = true;
-        visit[2][C] = true;
+        visit[A][B] = true;
         q.offer(new int[] { A, B, C });
 
         while (!q.isEmpty()) {
@@ -34,22 +32,18 @@ public class B_12886 {
             for (int i = 0; i < 3; i++) {
                 int ni = (i + 1) % 3;
                 if (cur[i] != cur[ni]) {
+                    int[] next = cur.clone();
                     if (cur[i] > cur[ni]) {
-                        cur[i] -= cur[ni];
-                        cur[ni] *= 2;
+                        next[i] -= next[ni];
+                        next[ni] *= 2;
                     } else {
-                        cur[ni] -= cur[i];
-                        cur[i] *= 2;
+                        next[ni] -= next[i];
+                        next[i] *= 2;
                     }
 
-                    if (visit[0][cur[0]] && visit[1][cur[1]] && visit[2][cur[2]]) {
-                        continue;
-                    }
-
-                    visit[0][cur[0]] = true;
-                    visit[1][cur[1]] = true;
-                    visit[2][cur[2]] = true;
-                    q.offer(cur);
+                    if(visit[next[0]][next[1]]) continue;
+                    visit[next[0]][next[1]] = true;
+                    q.offer(next);
                 }
             }
         }
@@ -57,9 +51,8 @@ public class B_12886 {
         return 0;
     }
 }
-/*
 
--ref: https://www.acmicpc.net/source/41662151
+/*
 
 TEST CASE:
 1)
@@ -71,5 +64,10 @@ TEST CASE:
 1 1 2
 
 ==> 0
+
+3)
+305 379 84
+
+==> 1
 
  */

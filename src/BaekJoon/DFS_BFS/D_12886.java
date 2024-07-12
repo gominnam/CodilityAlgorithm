@@ -79,6 +79,8 @@ bitmask 메서드 배운것:
 Integer.bitCount(i) : i의 1의 개수를 반환
 Integer.toBinaryString(i) : i를 2진수로 변환
 
+이 문제는 3개의 수 합이 같다.
+그러므로 2개의 값만 알고 방문처리를 하면 된다.
 
 TEST CASE:
 1)
