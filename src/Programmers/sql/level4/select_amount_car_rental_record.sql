@@ -1,0 +1,39 @@
+
+SELECT RH.HISTORY_ID
+     , CASE WHEN DP.DISCOUNT_RATE IS NULL THEN C.DAILY_FEE * (DATEDIFF(RH.END_DATE, RH.START_DATE)+1)
+            ELSE ROUND(C.DAILY_FEE * (DATEDIFF(RH.END_DATE, RH.START_DATE)+1) * (100 - DP.DISCOUNT_RATE) / 100, 0)
+       END AS FEE
+ FROM CAR_RENTAL_COMPANY_CAR C
+ JOIN CAR_RENTAL_COMPANY_RENTAL_HISTORY RH
+   ON C.CAR_ID = RH.CAR_ID
+ LEFT JOIN CAR_RENTAL_COMPANY_DISCOUNT_PLAN DP
+        ON C.CAR_TYPE = DP.CAR_TYPE
+       AND (
+            DP.DURATION_TYPE = '90일 이상' AND DATEDIFF(RH.END_DATE, RH.START_DATE)+1 >= 90
+              OR DP.DURATION_TYPE = '30일 이상' AND DATEDIFF(RH.END_DATE, RH.START_DATE)+1 >= 30
+              OR DP.DURATION_TYPE = '7일 이상' AND DATEDIFF(RH.END_DATE, RH.START_DATE)+1 >= 7
+           )
+WHERE C.CAR_TYPE = '트럭'
+GROUP BY RH.HISTORY_ID, C.DAILY_FEE, RH.START_DATE, RH.END_DATE
+ORDER BY FEE DESC, RH.HISTORY_ID DESC
+
+
+/*
+Thinking:
+1) Date 컬럼 일자 기간 구하기
+SELECT DATEDIFF(end_date, start_date) AS days_difference
+FROM your_table;
+
+2) Null이 아닌 값 추출 함수
+SELECT COALESCE(NULL, NULL, '세 번째 값', '네 번째 값');
+==> '세 번째 값' 이 출력 만약 모두 NULL 인 경우는 NULL을 반환
+
+3) Sql IF 문
+   CASE WHEN THEN
+        ELSE
+   END AS alias_name
+
+
+-ref: https://school.programmers.co.kr/learn/courses/30/lessons/151141
+
+ */
