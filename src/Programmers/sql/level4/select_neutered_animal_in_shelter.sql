@@ -1,0 +1,22 @@
+SELECT
+  INS.ANIMAL_ID,
+  INS.ANIMAL_TYPE,
+  INS.NAME
+FROM
+  ANIMAL_INS AS INS
+INNER JOIN
+  ANIMAL_OUTS AS OUTS
+ON
+  INS.ANIMAL_ID = OUTS.ANIMAL_ID
+WHERE
+  INS.SEX_UPON_INTAKE LIKE 'Intact%' AND
+  (OUTS.SEX_UPON_OUTCOME LIKE 'Spayed%' OR OUTS.SEX_UPON_OUTCOME LIKE 'Neutered%')
+ORDER BY
+  INS.ANIMAL_ID
+;
+
+/*
+
+-ref: https://school.programmers.co.kr/learn/courses/30/lessons/59045
+
+ */
