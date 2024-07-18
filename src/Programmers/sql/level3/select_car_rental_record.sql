@@ -1,0 +1,21 @@
+SELECT
+    CAR.CAR_ID
+FROM
+    CAR_RENTAL_COMPANY_CAR AS CAR
+INNER JOIN
+    CAR_RENTAL_COMPANY_RENTAL_HISTORY AS HIS
+  ON CAR.CAR_ID = HIS.CAR_ID
+WHERE
+  CAR_TYPE = '세단'
+  AND MONTH(HIS.START_DATE) = 10
+GROUP BY
+    CAR_ID
+ORDER BY
+    CAR_ID DESC
+;
+
+/*
+
+-ref: https://school.programmers.co.kr/learn/courses/30/lessons/157341
+
+*/
