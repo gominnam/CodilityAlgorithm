@@ -26,7 +26,7 @@ public class InspectionExteriorWall {
             List<int[]> permutations = getPermutations(friendsList, friendsList.size());
             for (int[] friends : permutations) {
                 int count = 1;  // 사용한 친구 수
-                int position = extendedWeak[start] + friends[count - 1];  // 첫 번째 친구가 점검할 수 있는 마지막 위치
+                int position = extendedWeak[start] + friends[0];  // 첫 번째 친구가 점검할 수 있는 마지막 위치
 
                 for (int index = start; index < start + length; index++) {
                     if (position < extendedWeak[index]) {  // 점검할 수 있는 위치를 벗어난 경우
