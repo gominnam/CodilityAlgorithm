@@ -4,10 +4,10 @@ SELECT
     SUM(products.PRICE * orders.AMOUNT) AS TOTAL_SALES
 FROM
     FOOD_PRODUCT AS products
-        JOIN
+JOIN
     FOOD_ORDER AS orders
-    ON
-        products.PRODUCT_ID = orders.PRODUCT_ID
+  ON
+    products.PRODUCT_ID = orders.PRODUCT_ID
 WHERE
     DATE_FORMAT(orders.PRODUCE_DATE, '%Y-%m') = '2022-05'
 GROUP BY
