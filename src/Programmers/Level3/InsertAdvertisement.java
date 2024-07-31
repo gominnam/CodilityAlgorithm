@@ -1,46 +1,20 @@
 package Programmers.Level3;
 
-import java.util.*;
-
 public class InsertAdvertisement {
-    static class Log implements Comparable<Log> {
-        int start;
-        int end;
-
-        Log(int start, int end) {
-            this.start = start;
-            this.end = end;
-        }
-
-        @Override
-        public int compareTo(Log o) {
-            if (this.start == o.start) {
-                return Integer.compare(this.end, o.end);
-            }
-            return Integer.compare(this.start, o.start);
-        }
-    }
-
     public static void main(String[] args) {
         String play_time = "02:03:55";
         String adv_time = "00:14:15";
         String[] logs = {"01:20:15-01:45:14", "00:40:31-01:00:00", "00:25:50-00:48:29", "01:30:59-01:53:29", "01:37:44-02:02:30"};
 
-        int dataSize = logs.length;
         int playTimeSecond = timeToSecond(play_time);
         int advTimeSecond = timeToSecond(adv_time);
-        List<Log> logList = new ArrayList<>();
-        for(int i=0; i<dataSize; i++){
-            String[] log = logs[i].split("-");
-            int start = timeToSecond(log[0]);
-            int end = timeToSecond(log[1]);
-            logList.add(new Log(start, end));
-        }
-        Collections.sort(logList);
-
         int[] totalPlayTime = new int[playTimeSecond + 1];
-        for (Log log : logList) {
-            for (int i = log.start; i < log.end; i++) {
+
+        for (String log : logs) {
+            String[] times = log.split("-");
+            int start = timeToSecond(times[0]);
+            int end = timeToSecond(times[1]);
+            for (int i = start; i < end; i++) {
                 totalPlayTime[i]++;
             }
         }
@@ -49,6 +23,7 @@ public class InsertAdvertisement {
         for (int i = 0; i < advTimeSecond; i++) {
             maxPlayTime += totalPlayTime[i];
         }
+
         long currentPlayTime = maxPlayTime;
         int startTime = 0;
         for (int i = advTimeSecond; i < playTimeSecond; i++) {
