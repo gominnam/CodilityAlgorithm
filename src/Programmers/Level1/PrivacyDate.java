@@ -80,6 +80,25 @@ Thinking:
     - parse(String text): 지정된 텍스트를 Date 객체로 변환
         - ParseException: 변환 중 오류가 발생한 경우 발생하는 예외 필수 (컴파일러 에러 발생)
 
+4) stream API:
+- mapToInt(): IntStream을 반환
+- toArray(): IntStream을 int 배열로 변환
+- ex)
+    class Person {
+        String name;
+        int age;
+
+        Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+    }
+
+List<Person> personList = Arrays.asList(new Person("Alice", 30), new Person("Bob", 25));
+String[] names = personList.stream().map(person -> person.name).toArray(String[]::new)
+
+++ (Long::longValue)는 메서드 참조를 사용한 예
+++ (person -> person.name)은 람다식을 사용한 예
 
 
 -ref: https://school.programmers.co.kr/learn/courses/30/lessons/150370
