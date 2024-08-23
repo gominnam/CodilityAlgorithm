@@ -2,6 +2,7 @@ package LeetCode.BinaryTree.easy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SymmetricTree {
 
@@ -50,7 +51,7 @@ public class SymmetricTree {
     public boolean isSame(List<Integer> left, List<Integer> right){
         if(left.size() != right.size()) return false;
         for(int i=0; i<left.size(); i++){
-            if(left.get(i) != right.get(i)) return false;
+            if(!Objects.equals(left.get(i), right.get(i))) return false;
         }
         return true;
     }
@@ -104,6 +105,12 @@ Thinking:
         return isMirror(t1.left, t2.right) && isMirror(t1.right, t2.left);
     }
 
+3) Objects.equals() 메소드
+
+- Objects.equals 메서드는 두 객체를 비교하여 동등성을 검사하는 유틸리티 메서드
+  이 메서드는 null 안전성을 제공하며
+  두 객체가 모두 null인 경우 true를 반환
+  하나만 null인 경우 false를 반환합니다.
 
 -ref: https://leetcode.com/problems/symmetric-tree/
 
