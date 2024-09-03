@@ -41,7 +41,7 @@ public class SameTree {
 //        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 //    }
 
-        public List<Integer> getInorderArrayFromTree(TreeNode p){
+    public List<Integer> getInorderArrayFromTree(TreeNode p){
         List<Integer> result = new ArrayList<>();
         helpInorderArray(p, result);
         return result;

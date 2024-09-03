@@ -25,7 +25,7 @@ public class UniqueBinarySearchTrees {
 
     public static void main(String[] args){
         UniqueBinarySearchTrees ubst = new UniqueBinarySearchTrees();
-        System.out.println(ubst.numTrees(5));
+        System.out.println(ubst.numTrees(3));
     }
 }
 
