@@ -29,18 +29,22 @@ public class T_1806 {
         String[] input = br.readLine().split(" ");
         int N = Integer.parseInt(input[0]);
         int S = Integer.parseInt(input[1]);
-        int arr[] = new int[N];
+        int[] arr = new int[N];
         input = br.readLine().split(" ");
         for(int i=0; i<N; i++){
             arr[i] = Integer.parseInt(input[i]);
         }
-        System.out.print(getAnswer(arr, S));
+        System.out.print(findMinSubArrayLength(arr, S));
     }
 }
 
 /*
 
-투 포인터로 해결하는 문제
+:: Two Pointer (투 포인터) ::
 
+TEST CASE:
+10 15
+5 1 3 5 10 7 4 9 2 8
 
+==> 2
  */
