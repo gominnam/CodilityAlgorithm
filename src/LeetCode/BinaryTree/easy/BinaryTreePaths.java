@@ -20,33 +20,47 @@ public class BinaryTreePaths {
 
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<>();
-        result.add(String.valueOf(root.val));
-        dfs(root, result, 0);
+        if(root != null){
+            dfs(root, "", result);
+        }
         return result;
     }
 
-    public void dfs(TreeNode node, List<String> result, int index){
+    private void dfs(TreeNode node, String path, List<String> result) {
+        if (node != null) {
+            path += Integer.toString(node.val);
+            if (node.left == null && node.right == null) { // if leaf node
+                result.add(path);
+            } else {
+                path += "->";
+                dfs(node.left, path, result);
+                dfs(node.right, path, result);
+            }
+        }
+    }
+
+    public void dfs2(TreeNode node, List<String> result, int index){ // before refactoring
         StringBuilder sb = new StringBuilder(result.get(index));
         int length = sb.length();
         if(node.left != null && node.right != null){
             sb.append("->").append(node.left.val);
             result.set(index, sb.toString());
-            dfs(node.left, result, index);
+            dfs2(node.left, result, index);
             sb.setLength(length);
 
             sb.append("->").append(node.right.val);
             result.add(sb.toString());
-            dfs(node.right, result, result.size()-1);
+            dfs2(node.right, result, result.size()-1);
         }
         else if(node.left != null){
             sb.append("->").append(node.left.val);
             result.set(index, sb.toString());
-            dfs(node.left, result, index);
+            dfs2(node.left, result, index);
         }
         else if(node.right != null){
             sb.append("->").append(node.right.val);
             result.set(index, sb.toString());
-            dfs(node.right, result, index);
+            dfs2(node.right, result, index);
         }
     }
 
