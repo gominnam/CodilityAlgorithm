@@ -80,4 +80,8 @@ public class BinaryTreePaths {
 
 -ref: https://leetcode.com/problems/binary-tree-paths/description/
 
+dfs2 메서드가 refactoring 전의 코드이다.
+dfs 메서드가 더 간결하고 가독성이 좋았지만 실행시간은 dfs2가 더 효율적이었다.
+
+String 클래스의 경우 문자열을 변경할 때마다 새로운 객체를 생성하기 때문에 이런 현상이 발생.
  */
