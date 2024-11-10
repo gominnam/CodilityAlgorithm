@@ -37,6 +37,14 @@ public class LetterCombinationsOfPhoneNumber {
 
 /*
 
+[ 개선 ]
+
+1. null 조건문 추가
+: digits가 null인 경우에 대한 예외처리를 추가
+
+2. StringBuilder를 사용하여 문자열을 조작
+: 문자열을 조작할 때 StringBuilder를 사용하여 시간 효율성 단축
+
 -ref: https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
  */
