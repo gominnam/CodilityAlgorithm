@@ -63,6 +63,7 @@ public class ValidAnagram {
 
 * isAnagram VS isAnagram2 VS isAnagram3
 : 15ms 와 6ms 와 3ms 점차 속도 개선
+: O(n) [ 실제론 O(2n) ] , O(n) [ 실제론 O(n) + O(26) ], O(NlogN) [ 실제 문자정렬 O(nlogn) * 2 + O(n) ]
 : Linked 참조 접근 보다 Array 접근이 빠름.
 
 
