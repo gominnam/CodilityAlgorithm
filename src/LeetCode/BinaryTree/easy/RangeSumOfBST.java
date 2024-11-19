@@ -40,6 +40,12 @@ public class RangeSumOfBST {
 
 /*
 
+* Binary Search Tree(BST):
+-
+
+시간복잡도 : O(N)
+
+
 - ref: https://leetcode.com/problems/range-sum-of-bst/submissions/1443850291/
 
  */

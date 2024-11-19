@@ -1,6 +1,10 @@
 package LeetCode.BinaryTree.hard;
 
 public class SerializeAndDeserializeBinaryTree {
+
+    private static final String NULL = "null";
+    private static final String DELIMITER = ",";
+
     public static class TreeNode {
         int val;
         TreeNode left;
@@ -17,10 +21,10 @@ public class SerializeAndDeserializeBinaryTree {
 
     public void serializeHelper(TreeNode root, StringBuilder sb){
         if(root == null){
-            sb.append("null,");
+            sb.append(NULL).append(DELIMITER);
         }
         else{
-            sb.append(root.val).append(",");
+            sb.append(root.val).append(DELIMITER);
             serializeHelper(root.left, sb);
             serializeHelper(root.right, sb);
         }
@@ -28,11 +32,11 @@ public class SerializeAndDeserializeBinaryTree {
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        return deserializeHelper(data.split(","), new int[]{0});
+        return deserializeHelper(data.split(DELIMITER), new int[]{0});
     }
 
     public TreeNode deserializeHelper(String[] data, int[] index){ // 참조형으로 해서 index 공유
-        if(data[index[0]].equals("null")){
+        if(data[index[0]].equals(NULL)){
             index[0]++;
             return null;
         }
