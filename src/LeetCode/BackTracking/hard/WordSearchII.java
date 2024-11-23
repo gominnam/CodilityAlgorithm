@@ -15,61 +15,68 @@ public class WordSearchII {
 
         public TrieNode() {
             this.children = new TrieNode[26];
-            this.isEndOfWord = true;
+            this.isEndOfWord = false;
         }
     }
 
-    public boolean startsWith(String prefix){
+    public void insert(String word) {
         TrieNode node = root;
-        for(char c : prefix.toCharArray()){
+        for (char c : word.toCharArray()) {
             int idx = c - 'a';
-            if(node.children[idx] == null) return false;
+            if (node.children[idx] == null) {
+                node.children[idx] = new TrieNode();
+            }
             node = node.children[idx];
         }
-        return true;
+        node.isEndOfWord = true;
     }
 
-    public void TrieInit(char[][] board){
-        for(int i=0; i<board.length; i++){
-            for(int j=0; j<board[0].length; j++){
-                boolean[][] cache = new boolean[board.length][board[0].length];
-                cache[i][j] = true;
-                int idx = board[i][j] - 'a';
-                if(root.children[idx] == null){
-                    root.children[idx] = new TrieNode();
-                }
-                dfs(board, new int[]{i, j}, cache, root.children[idx]);
-            }
+    public void dfs(char[][] board, int x, int y, TrieNode node, boolean[][] visited, StringBuilder sb, List<String> result) {
+        if (node.isEndOfWord) {
+            result.add(sb.toString());
+            node.isEndOfWord = false; // 중복 방지
         }
-    }
 
-    public void dfs(char[][] board, int[] cur, boolean[][] cache, TrieNode node){
         int xn = board.length;
         int yn = board[0].length;
-        for(int[] dir : DIRECTIONS){
-            int mx = cur[0] + dir[0];
-            int my = cur[1] + dir[1];
-            if(mx >= 0 && my >= 0 && mx < xn && my < yn && !cache[mx][my]){
+
+        for (int[] dir : DIRECTIONS) {
+            int mx = x + dir[0];
+            int my = y + dir[1];
+            if (mx >= 0 && my >= 0 && mx < xn && my < yn && !visited[mx][my]) {
                 int idx = board[mx][my] - 'a';
-                if(node.children[idx] == null){
-                    node.children[idx] = new TrieNode();
+                if (node.children[idx] != null) {
+                    visited[mx][my] = true;
+                    sb.append(board[mx][my]);
+                    dfs(board, mx, my, node.children[idx], visited, sb, result);
+                    sb.deleteCharAt(sb.length() - 1);
+                    visited[mx][my] = false;
                 }
-                cache[mx][my] = true;
-                dfs(board, new int[]{mx, my}, cache, node.children[idx]);
-                cache[mx][my] = false;
             }
         }
     }
 
-
     public List<String> findWords(char[][] board, String[] words) {
-        TrieInit(board);
+        for (String word : words) {
+            insert(word);
+        }
+
         List<String> result = new ArrayList<>();
-        for(String word : words){
-            if(startsWith(word)) {
-                result.add(word);
+        int xn = board.length;
+        int yn = board[0].length;
+        boolean[][] visited = new boolean[xn][yn];
+
+        for (int i = 0; i < xn; i++) {
+            for (int j = 0; j < yn; j++) {
+                int idx = board[i][j] - 'a';
+                if (root.children[idx] != null) {
+                    visited[i][j] = true;
+                    dfs(board, i, j, root.children[idx], visited, new StringBuilder().append(board[i][j]), result);
+                    visited[i][j] = false;
+                }
             }
         }
+
         return result;
     }
 
@@ -94,6 +101,9 @@ Thinking:
 - 처음에 bfs로 접근했지만 bfs는 중간에 chaining이 끊겨 Trie 접근이 안된다고 판단하여 dfs로 수정
 - 꼭 정사각형만 있는 것이 아니라 직사각형도 가능. 따라서 xn, yn을 따로 수정
 - Time Limit Exceeded 발생
+  : 사고를 바꿔야 하는 문제.
+  : board의 모든 문자를 Trie에 넣어서 시작하는 것이 아니라 Trie에 있는 문자로 시작하는 것만 찾아야 한다.
+
 
 -ref: https://leetcTrieNode.com/problems/word-search-ii/description/
 
