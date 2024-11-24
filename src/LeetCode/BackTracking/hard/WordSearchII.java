@@ -104,6 +104,11 @@ Thinking:
   : 사고를 바꿔야 하는 문제.
   : board의 모든 문자를 Trie에 넣어서 시작하는 것이 아니라 Trie에 있는 문자로 시작하는 것만 찾아야 한다.
 
+Optimization:
+- cache를 사용하여 방문 여부를 확인하는 방식을 사용하지 않고 board[][]의 방문 구분자를 수정하여 방문을 확인하는 방식으로 변경할 수 있다.
+  board[i][j] = '#'로 변경하여 체킹하고 다시 board[i][j] = c로 변경하여 원상복구하는 방식으로 구현한다.
+
+
 
 -ref: https://leetcTrieNode.com/problems/word-search-ii/description/
 

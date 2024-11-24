@@ -55,6 +55,10 @@ Thinking:
 : (2, 0) -> (0, 0) -> (0, 2) -> (2, 2) -> (2, 0)
 : (x, y) 일 경우 회전하고나면 y -> x, (n - x - 1) -> y
   즉, (x,y) -> (y, n-x-1)) 이동한다.
+: i고정 j증가, i증가 j고정, i고정 j감소, i감소 j고정
+  i,
+: for 문 범위 i :: 0 ~ n-1 -> 1 ~ n-2 -> 2 ~ n-3 -> ... -> n/2
+            j :: i ~ n-i-1
 
 
 -ref: https://leetcode.com/problems/rotate-image/submissions
