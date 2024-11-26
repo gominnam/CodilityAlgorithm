@@ -109,7 +109,6 @@ Optimization:
   board[i][j] = '#'로 변경하여 체킹하고 다시 board[i][j] = c로 변경하여 원상복구하는 방식으로 구현한다.
 
 
-
 -ref: https://leetcTrieNode.com/problems/word-search-ii/description/
 
  */
