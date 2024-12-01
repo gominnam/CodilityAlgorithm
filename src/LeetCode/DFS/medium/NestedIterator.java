@@ -97,8 +97,11 @@ public class NestedIterator implements Iterator<Integer> {
 Thinking:
 : 20분간 고민 해보고 구현하다 참조 소스 보고 구현.
 : Iterator의 hasNext()와 next() 메소드를 구현하는 것이 핵심.
-: Stack 자료구조를 활용하여 리스트 인경우 Stack에 쌓아가면서 Integer를 꺼내는게 핵심
-:
+: Stack 자료구조를 활용하여 리스트 인경우 Stack에 쌓아가면서 Integer를 꺼내는게 핵심 // todo: deque로 구현해보기
+
+: 현재 위치를 가리키는 포인터를 가지고 있어야 한다.
+: 뒤에서부터 stack으로 쌓고 앞에서부터 꺼내는 방식으로 구현해야 한다.
+    : 리스트를 만나면 다시 평탄화 하여 stack에 넣어준다.
 
 
 -ref: https://leetcode.com/problems/flatten-nested-list-iterator/

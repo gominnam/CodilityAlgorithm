@@ -47,7 +47,8 @@ public class MaximalSquare {
 
 #Thinking
 :Dynamic Programming, DP
--
+- 문제에서 정사각형으로 한정지은 것에 생각해봐야함. (힌트)
+- 첫번째 열만 dp가 없으므로 잘 고려한다. (index out of range)
 
 -ref: https://leetcode.com/problems/maximal-square/description/
 
