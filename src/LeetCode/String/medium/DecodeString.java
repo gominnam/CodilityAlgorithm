@@ -1,6 +1,5 @@
 package LeetCode.String.medium;
 
-import java.util.Arrays;
 import java.util.Stack;
 
 public class DecodeString {

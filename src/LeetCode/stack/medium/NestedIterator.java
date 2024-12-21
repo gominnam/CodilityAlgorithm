@@ -1,4 +1,4 @@
-package LeetCode.DFS.medium;
+package LeetCode.stack.medium;
 
 import java.util.ArrayList;
 import java.util.Iterator;
