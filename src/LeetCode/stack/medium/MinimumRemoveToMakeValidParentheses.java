@@ -1,5 +1,7 @@
 package LeetCode.stack.medium;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class MinimumRemoveToMakeValidParentheses {
@@ -74,10 +76,44 @@ public class MinimumRemoveToMakeValidParentheses {
         return result.reverse().toString();
     }
 
+    /*
+    :Deque - Queue, Stack 두 방식 모두 사용가능
+    - addFirst(e): 요소 e를 덱의 앞쪽에 추가합니다.
+    - addLast(e): 요소 e를 덱의 뒤쪽에 추가합니다.
+    - removeFirst(): 덱의 앞쪽에서 요소를 제거하고 반환합니다.
+    - removeLast(): 덱의 뒤쪽에서 요소를 제거하고 반환합니다.
+    - peekFirst(): 덱의 앞쪽에 있는 요소를 제거하지 않고 반환합니다.
+    - peekLast(): 덱의 뒤쪽에 있는 요소를 제거하지 않고 반환합니다.
+     */
+    public String minRemoveToMakeValid_deque(String s) {
+        Deque<Integer> stack = new LinkedList<>();
+        char[] arr = s.toCharArray();
+
+        for (int i = 0; i < arr.length; i++) {
+            char c = arr[i];
+            if (c == '(') {
+                stack.addLast(i);
+            } else if (c == ')') {
+                if (stack.isEmpty()) {
+                    arr[i] = '_';
+                } else {
+                    stack.pollLast();
+                }
+            }
+        }
+
+        for (Integer i : stack) {
+            arr[i] = '_';
+        }
+
+        return new String(arr).replace("_", "").toString();
+    }
+
+
     public static void main(String[] args) {
         MinimumRemoveToMakeValidParentheses mrtmvp = new MinimumRemoveToMakeValidParentheses();
         String s = "lee(t(c)o)de)";
-        System.out.println(mrtmvp.minRemoveToMakeValid2(s));
+        System.out.println(mrtmvp.minRemoveToMakeValid_deque(s));
     }
 }
 
