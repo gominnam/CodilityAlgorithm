@@ -33,17 +33,49 @@ public class MaximumNumberOfOccurrencesOfSubstring {
         return answer;
     }
 
+    public int maxFreq_2(String s, int maxLetters, int minSize, int maxSize) {
+        int[] cnt = new int[26];
+        Map<String, Integer> map = new HashMap<>();
+        int l = 0, r = 0, max = 0, result = 0;
+
+        while (r < s.length()) {
+            char c = s.charAt(r++);
+            if (cnt[c - 'a'] == 0) {
+                max++;
+            }
+            cnt[c - 'a']++;
+
+            if (r - l < minSize) continue;
+            if (r - l > minSize) {
+                char t = s.charAt(l);
+                cnt[t - 'a']--;
+                if (cnt[t - 'a'] == 0) {
+                    max--;
+                }
+                l++;
+            }
+
+            if (max <= maxLetters) {
+                String tmp = s.substring(l, r);
+                map.put(tmp, map.getOrDefault(tmp, 0) + 1);
+                result = Math.max(map.get(tmp), result);
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         MaximumNumberOfOccurrencesOfSubstring mnoos = new MaximumNumberOfOccurrencesOfSubstring();
-//        String s = "aababcaab";
-//        int maxLetters = 2;
-//        int minSize = 3;
-//        int maxSize = 4;
-        String s = "aaaa";
-        int maxLetters = 1;
+        String s = "aababcaab";
+        int maxLetters = 2;
         int minSize = 3;
-        int maxSize = 3;
-        System.out.println(mnoos.maxFreq(s, maxLetters, minSize, maxSize)); // 2
+        int maxSize = 4;
+//        String s = "aaaa";
+//        int maxLetters = 1;
+//        int minSize = 3;
+//        int maxSize = 3;
+        System.out.println(mnoos.maxFreq_2(s, maxLetters, minSize, maxSize)); // 2
     }
 }
 
