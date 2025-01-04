@@ -26,25 +26,23 @@ public class Trie {
     }
 
     public boolean search(String word){
-        TrieNode node = root;
-        for(char c : word.toCharArray()){
-            if(node.children[c-'a'] == null){
-                return false;
-            }
-            node = node.children[c-'a'];
-        }
-        return node.isEndWord;
+        TrieNode node = searchPrefix(word);
+        return node != null && node.isEndWord;
     }
 
     public boolean startWith(String prefix){
+        return searchPrefix(prefix) != null;
+    }
+
+    private TrieNode searchPrefix(String prefix){
         TrieNode node = root;
         for(char c : prefix.toCharArray()){
             if(node.children[c-'a'] == null){
-                return false;
+                return null;
             }
             node = node.children[c-'a'];
         }
-        return true;
+        return node;
     }
 
     public static void main(String[] args) {
