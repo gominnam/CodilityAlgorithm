@@ -1,4 +1,4 @@
-package LeetCode.Queue;
+package LeetCode.Queue.hard;
 
 import java.util.TreeSet;
 
@@ -51,5 +51,7 @@ Thinking:
 - firstMissingPositive_2 방법이 메모리, 속도 개선화된 풀이 방법
     > 시간복잡도 O(n), 공간복잡도 O(1)
     > 핵심 아이디어는 배열 자체를 일종의 해시 테이블처럼 활용하여 인덱스와 값을 매핑
+
+-ref: https://leetcode.com/problems/first-missing-positive/
 
  */
