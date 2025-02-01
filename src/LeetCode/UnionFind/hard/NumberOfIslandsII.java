@@ -154,7 +154,6 @@ Thinking:
 - update 하는 동안 set 기존 값 제거(섬이 합쳐지므로)
 - set size를 answer에 추가
 
-
 -ref : https://leetcode.com/problems/number-of-islands-ii/
 
  */
