@@ -72,8 +72,8 @@ public class SpiralMatrix {
         int[][] matrix2 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
         int[][] matrix3 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
         System.out.println(sm.spiralOrder(matrix)); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
-        System.out.println(sm.spiralOrder(matrix2)); // [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
-        System.out.println(sm.spiralOrder(matrix3)); // [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
+        System.out.println(sm.spiralOrder_array(matrix2)); // [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
+        System.out.println(sm.spiralOrder_array( matrix3)); // [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
     }
 }
 
@@ -82,6 +82,9 @@ public class SpiralMatrix {
 Thinking:
 - 방향을 갖는 배열 direction을 만들어서 방향을 바꿔가면서 순회
 - 메모리 효율성을 위해 matrix 값을 Integer.MIN_VALUE로 변경하여 체크
+
+- spiralOrder_array()
+    - 배열 index 값을 구하는 방식으로 하나하나 add 하는 방법 (직관적)
 
 -ref: https://leetcode.com/problems/spiral-matrix/
 
