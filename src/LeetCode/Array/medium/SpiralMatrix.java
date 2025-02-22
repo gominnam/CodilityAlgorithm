@@ -66,14 +66,35 @@ public class SpiralMatrix {
         return result;
     }
 
+    public List<Integer> spiralOrder_sturdy(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        int y = 0, x = 0, d = 0, total = matrix.length * matrix[0].length;
+
+        while (result.size() < total) {
+            if (y < 0 || x < 0 || y >= matrix.length || x >= matrix[y].length || matrix[y][x] == -101) {
+                y -= direction[d][0]; x -= direction[d][1];
+                d = (d + 1) % 4;
+                y += direction[d][0]; x += direction[d][1];
+            } else {
+                result.add(matrix[y][x]);
+                matrix[y][x] = -101;
+                y += direction[d][0]; x += direction[d][1];
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         SpiralMatrix sm = new SpiralMatrix();
         int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         int[][] matrix2 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
         int[][] matrix3 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
+        int[][] matrix4 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
         System.out.println(sm.spiralOrder(matrix)); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
         System.out.println(sm.spiralOrder_array(matrix2)); // [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
-        System.out.println(sm.spiralOrder_array( matrix3)); // [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
+        System.out.println(sm.spiralOrder_array(matrix3)); // [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
+        System.out.println(sm.spiralOrder_sturdy(matrix4));
     }
 }
 
