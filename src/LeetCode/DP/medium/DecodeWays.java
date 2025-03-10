@@ -28,6 +28,29 @@ public class DecodeWays {
         return dp[n];
     }
 
+    public int numDecodings_2(String s) {
+        if (s.charAt(0) == '0') return 0;
+        int prev = 1, pprev = 1;
+        for (int i = 1; i < s.length(); i++) {
+            char c = s.charAt(i);
+            int cur = 0;
+
+            if (c != '0') {
+                cur += prev;
+            }
+
+            char pc = s.charAt(i - 1);
+            if (pc == '1' || (pc == '2' && c <= '6')) {
+                cur += pprev;
+            }
+
+            pprev = prev;
+            prev = cur;
+        }
+
+        return prev;
+    }
+
     public static void main(String[] args) {
         DecodeWays o = new DecodeWays();
         System.out.println(o.numDecodings("12"));//2
@@ -43,6 +66,7 @@ public class DecodeWays {
 
 Thinking:
 - String 에서 substring(a, b) 메서드 a는 포함, b는 미포함(b 전까지)이다.
+- numDecodings_2 메서드는 메모리 최적화 방법 // 배열 할당 없이 해결
 
 -ref: https://leetcode.com/problems/decode-ways/
 
