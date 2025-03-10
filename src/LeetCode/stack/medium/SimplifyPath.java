@@ -2,34 +2,25 @@ package LeetCode.stack.medium;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
+import java.util.LinkedList;
 
 public class SimplifyPath {
 
     public String simplifyPath(String path) {
-        Stack<String> stack = new Stack<>();
-        String[] paths = path.split("/");
-        for(String current : paths){
-            stack.push(current);
+        Deque<String> stack = new LinkedList<>();
+        String[] arr = path.split("/");
+
+        for (String p : arr) {
+            if (p.equals(".")) {
+                continue;
+            } else if (p.equals("..")) {
+                stack.pollLast();
+            } else if (!p.isEmpty()) {
+                stack.addLast(p);
+            }
         }
 
-        StringBuilder sb = new StringBuilder();
-        int up = 0;
-        while(!stack.isEmpty()){
-            String curPath = stack.pop();
-            if(curPath.equals("") || curPath.equals(".")) continue;
-            else if(curPath.equals("..")) {
-                up++;
-                continue;
-            }
-            else if(up > 0) {
-                up--;
-                continue;
-            }
-            sb.insert(0, "/").insert(1, curPath);
-        }
-        if(sb.isEmpty()) return "/";
-        return sb.toString();
+        return "/" + String.join("/", stack);
     }
 
     public String simplifyPath_Deque(String path){
