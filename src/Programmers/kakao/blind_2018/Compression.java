@@ -32,6 +32,40 @@ public class Compression {
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
+    public int[] solution_refactoring(String msg) {
+        Map<String, Integer> dictionary = new HashMap<>();
+        int index = 1;
+        for (char c = 'A'; c <= 'Z'; c++) {
+            dictionary.put(String.valueOf(c), index++);
+        }
+
+        List<Integer> result = new ArrayList<>();
+        String w = "";
+        for (int i = 0; i < msg.length(); i++) {
+            char c = msg.charAt(i);
+            String wc = w + c;
+
+            if (dictionary.containsKey(wc)) {
+                // 사전에 존재하면 w를 확장
+                w = wc;
+            } else {
+                // 사전에 없으면 w의 인덱스를 결과에 추가
+                result.add(dictionary.get(w));
+                // 새로운 문자열 wc를 사전에 추가
+                dictionary.put(wc, index++);
+                // w를 c로 갱신
+                w = String.valueOf(c);
+            }
+        }
+
+        // 마지막 남은 w 처리
+        if (!w.isEmpty()) {
+            result.add(dictionary.get(w));
+        }
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+
     public static void main(String[] args) {
         Compression c = new Compression();
 //        String s = "KAKAO"; // 11, 1, 27, 15
